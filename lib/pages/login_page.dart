@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,50 +21,36 @@ class LoginPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Form(
+                const Text(
+                  'Realizar login',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 64,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: const Form(
                     child: Column(
                       children: [
-                        const Text(
-                          'Fazer Login',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        FormFieldWidget(
+                          label: 'Nome de usuário',
                         ),
-                        const SizedBox(
-                          height: 32,
+                        SizedBox(
+                          height: 16,
                         ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Nome de usuário",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Senha",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
+                        FormFieldWidget(
+                          label: 'Senha',
                         ),
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 32,
                 ),
                 ElevatedButton(
                   onPressed: () {},
@@ -77,11 +65,14 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    "Logar",
+                    "Entrar",
                     style: TextStyle(
                       fontSize: 24,
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 32,
                 ),
                 TextButton(
                   onPressed: () {
