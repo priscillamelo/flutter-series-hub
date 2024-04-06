@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
 class CriarContaPage extends StatelessWidget {
   const CriarContaPage({super.key});
@@ -18,97 +19,45 @@ class CriarContaPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Form(
-                  child: Padding(
-                    padding: const EdgeInsets.all(32),
+                const Text(
+                  'Criar Conta',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 64,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: const Form(
                     child: Column(
                       children: [
-                        const Text(
-                          'Criar Conta',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        FormFieldWidget(label: 'Nome'),
+                        SizedBox(
+                          height: 16,
                         ),
-                        const SizedBox(
+                        FormFieldWidget(label: 'Sobrenome'),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        FormFieldWidget(label: 'Nome de usuário'),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        FormFieldWidget(label: 'E-mail'),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        FormFieldWidget(label: 'Senha'),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        FormFieldWidget(label: 'Confirmar senha'),
+                        SizedBox(
                           height: 32,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Nome",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Sobrenome",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Nome de usuário",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "E-mail",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Senha",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 20),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(20),
-                            labelText: "Confirmar Senha",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50))),
-                          ),
                         ),
                       ],
                     ),
@@ -133,6 +82,9 @@ class CriarContaPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 32,
+                ),
                 TextButton(
                   onPressed: () {
                     Navigator.popAndPushNamed(context, "/login");
@@ -149,7 +101,7 @@ class CriarContaPage extends StatelessWidget {
                   child: const Text(
                     "Já tem uma conta? Clique aqui",
                   ),
-                )
+                ),
               ],
             ),
           ),

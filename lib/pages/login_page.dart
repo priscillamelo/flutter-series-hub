@@ -45,12 +45,12 @@ class LoginPage extends StatelessWidget {
                         FormFieldWidget(
                           label: 'Senha',
                         ),
+                        SizedBox(
+                          height: 32,
+                        ),
                       ],
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 32,
                 ),
                 ElevatedButton(
                   onPressed: () {},

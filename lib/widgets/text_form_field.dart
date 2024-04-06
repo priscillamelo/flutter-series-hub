@@ -7,6 +7,7 @@ class FormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: label.toLowerCase().contains('senha') ? true : false,
       style: const TextStyle(fontSize: 20),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(20),
