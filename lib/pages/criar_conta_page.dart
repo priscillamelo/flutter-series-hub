@@ -31,31 +31,36 @@ class CriarContaPage extends StatelessWidget {
                   height: 64,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width / 1.4,
                   child: const Form(
                     child: Column(
                       children: [
-                        FormFieldWidget(label: 'Nome'),
+                        FormFieldWidget(label: 'Nome', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(label: 'Sobrenome'),
+                        FormFieldWidget(
+                            label: 'Sobrenome', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(label: 'Nome de usuário'),
+                        FormFieldWidget(
+                            label: 'Nome de usuário', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(label: 'E-mail'),
+                        FormFieldWidget(
+                            label: 'E-mail', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(label: 'Senha'),
+                        FormFieldWidget(
+                            label: 'Senha', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(label: 'Confirmar senha'),
+                        FormFieldWidget(
+                            label: 'Confirmar senha', icon: Icon(Icons.email)),
                         SizedBox(
                           height: 32,
                         ),

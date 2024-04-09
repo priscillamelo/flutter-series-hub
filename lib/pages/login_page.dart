@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -32,18 +31,23 @@ class LoginPage extends StatelessWidget {
                   height: 64,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width / 1.4,
                   child: const Form(
                     child: Column(
                       children: [
                         FormFieldWidget(
-                          label: 'Nome de usuário',
+                          label: 'E-mail',
+                          icon: Icon(Icons.email),
+                          keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Senha',
+                          icon: Icon(
+                            Icons.password,
+                          ),
                         ),
                         SizedBox(
                           height: 32,
