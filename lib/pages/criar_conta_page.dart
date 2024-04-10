@@ -35,32 +35,45 @@ class CriarContaPage extends StatelessWidget {
                   child: const Form(
                     child: Column(
                       children: [
-                        FormFieldWidget(label: 'Nome', icon: Icon(Icons.email)),
+                        FormFieldWidget(
+                          label: 'Nome',
+                          icon: Icon(Icons.account_circle),
+                        ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
-                            label: 'Sobrenome', icon: Icon(Icons.email)),
+                          label: 'Sobrenome',
+                          icon: Icon(Icons.account_box),
+                        ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
-                            label: 'Nome de usuário', icon: Icon(Icons.email)),
+                          label: 'Nome de usuário',
+                          icon: Icon(Icons.account_circle),
+                        ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
-                            label: 'E-mail', icon: Icon(Icons.email)),
+                          label: 'E-mail',
+                          icon: Icon(Icons.email),
+                        ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
-                            label: 'Senha', icon: Icon(Icons.email)),
+                          label: 'Senha',
+                          icon: Icon(Icons.password),
+                        ),
                         SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
-                            label: 'Confirmar senha', icon: Icon(Icons.email)),
+                          label: 'Confirmar senha',
+                          icon: Icon(Icons.password),
+                        ),
                         SizedBox(
                           height: 32,
                         ),

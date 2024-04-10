@@ -14,6 +14,9 @@ class FormFieldWidget extends StatelessWidget {
       style: const TextStyle(fontSize: 20),
       keyboardType: keyboardType,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey.shade100,
+        prefixIconColor: Colors.purple.shade200,
         prefixIcon: icon,
         contentPadding: const EdgeInsets.all(20),
         labelText: label,

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final String email = '';
+  final String senha = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +64,18 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (email.isNotEmpty &
+                        email.contains('priscillamelo73@gmail.com')) {
+                      if (senha.isNotEmpty & senha.contains('123')) {
+                        Navigator.popAndPushNamed(context, '/home');
+                      } else {
+                        debugPrint('Senha inválida');
+                      }
+                    } else {
+                      debugPrint('E-mail inválido');
+                    }
+                  },
                   style: const ButtonStyle(
                     padding: MaterialStatePropertyAll(
                       EdgeInsets.only(
