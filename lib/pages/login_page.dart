@@ -9,8 +9,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final String email = '';
-  final String senha = '';
+  final _formKey = GlobalKey<FormState>();
+
+  final email = TextEditingController();
+  final senha = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,24 +41,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.4,
-                  child: const Form(
+                  child: Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         FormFieldWidget(
                           label: 'E-mail',
-                          icon: Icon(Icons.email),
                           keyboardType: TextInputType.emailAddress,
+                          controller: email,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Senha',
-                          icon: Icon(
-                            Icons.password,
-                          ),
+                          controller: senha,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 32,
                         ),
                       ],
@@ -65,15 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (email.isNotEmpty &
-                        email.contains('priscillamelo73@gmail.com')) {
-                      if (senha.isNotEmpty & senha.contains('123')) {
-                        Navigator.popAndPushNamed(context, '/home');
-                      } else {
-                        debugPrint('Senha inválida');
-                      }
-                    } else {
-                      debugPrint('E-mail inválido');
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.popAndPushNamed(context, '/home');
                     }
                   },
                   style: const ButtonStyle(

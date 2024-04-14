@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
-class CriarContaPage extends StatelessWidget {
+class CriarContaPage extends StatefulWidget {
   const CriarContaPage({super.key});
 
+  @override
+  State<CriarContaPage> createState() => _CriarContaPageState();
+}
+
+class _CriarContaPageState extends State<CriarContaPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final nome = TextEditingController();
+  final sobrenome = TextEditingController();
+  final nomeUsuario = TextEditingController();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+  final confirmarSenha = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,49 +45,50 @@ class CriarContaPage extends StatelessWidget {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.4,
-                  child: const Form(
+                  child: Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         FormFieldWidget(
                           label: 'Nome',
-                          icon: Icon(Icons.account_circle),
+                          controller: nome,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Sobrenome',
-                          icon: Icon(Icons.account_box),
+                          controller: sobrenome,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Nome de usuário',
-                          icon: Icon(Icons.account_circle),
+                          controller: nomeUsuario,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'E-mail',
-                          icon: Icon(Icons.email),
+                          controller: email,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Senha',
-                          icon: Icon(Icons.password),
+                          controller: senha,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Confirmar senha',
-                          icon: Icon(Icons.password),
+                          controller: confirmarSenha,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 32,
                         ),
                       ],
@@ -82,7 +96,11 @@ class CriarContaPage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.popAndPushNamed(context, '/home');
+                    }
+                  },
                   style: const ButtonStyle(
                     padding: MaterialStatePropertyAll(
                       EdgeInsets.only(
