@@ -34,6 +34,10 @@ class FormFieldWidget extends StatelessWidget {
         prefixIconColor: Colors.purple.shade200,
         contentPadding: const EdgeInsets.all(20),
         labelText: label,
+        enabled: true,
+        helperText: label.toLowerCase().contains('senha')
+            ? "Mínimo 6 caractereres"
+            : null,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(50),

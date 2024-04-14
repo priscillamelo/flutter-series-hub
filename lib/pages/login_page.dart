@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
+import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,9 +12,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  final AuthenticationService _authenticationService = AuthenticationService();
 
-  final email = TextEditingController();
-  final senha = TextEditingController();
+  final _emailController = TextEditingController();
+  final _senhaController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +51,14 @@ class _LoginPageState extends State<LoginPage> {
                         FormFieldWidget(
                           label: 'E-mail',
                           keyboardType: TextInputType.emailAddress,
-                          controller: email,
+                          controller: _emailController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Senha',
-                          controller: senha,
+                          controller: _senhaController,
                         ),
                         const SizedBox(
                           height: 32,
@@ -67,7 +70,17 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.popAndPushNamed(context, '/home');
+                      _authenticationService
+                          .logarUsuario(
+                              email: _emailController.text,
+                              senha: _senhaController.text)
+                          .then((String? erro) {
+                        if (erro != null) {
+                          showSnackBar(context: context, text: erro);
+                        } else {
+                          Navigator.popAndPushNamed(context, '/home');
+                        }
+                      });
                     }
                   },
                   style: const ButtonStyle(

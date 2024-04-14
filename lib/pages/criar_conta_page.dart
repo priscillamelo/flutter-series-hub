@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
+import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
 class CriarContaPage extends StatefulWidget {
@@ -10,13 +12,14 @@ class CriarContaPage extends StatefulWidget {
 
 class _CriarContaPageState extends State<CriarContaPage> {
   final _formKey = GlobalKey<FormState>();
+  final AuthenticationService _authenticationService = AuthenticationService();
 
-  final nome = TextEditingController();
-  final sobrenome = TextEditingController();
-  final nomeUsuario = TextEditingController();
-  final email = TextEditingController();
-  final senha = TextEditingController();
-  final confirmarSenha = TextEditingController();
+  final nomeController = TextEditingController();
+  final sobrenomeController = TextEditingController();
+  final nomeUsuarioController = TextEditingController();
+  final emailController = TextEditingController();
+  final senhaController = TextEditingController();
+  final confirmarSenhaController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,42 +54,42 @@ class _CriarContaPageState extends State<CriarContaPage> {
                       children: [
                         FormFieldWidget(
                           label: 'Nome',
-                          controller: nome,
+                          controller: nomeController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Sobrenome',
-                          controller: sobrenome,
+                          controller: sobrenomeController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Nome de usuário',
-                          controller: nomeUsuario,
+                          controller: nomeUsuarioController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'E-mail',
-                          controller: email,
+                          controller: emailController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Senha',
-                          controller: senha,
+                          controller: senhaController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         FormFieldWidget(
                           label: 'Confirmar senha',
-                          controller: confirmarSenha,
+                          controller: confirmarSenhaController,
                         ),
                         const SizedBox(
                           height: 32,
@@ -98,7 +101,24 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.popAndPushNamed(context, '/home');
+                      _authenticationService
+                          .cadastrarUsuario(
+                              nome: nomeController.text,
+                              sobrenome: sobrenomeController.text,
+                              nomeUsuario: nomeUsuarioController.text,
+                              email: emailController.text,
+                              senha: senhaController.text)
+                          .then((String? erro) {
+                        if (erro != null) {
+                          showSnackBar(context: context, text: erro);
+                        } else {
+                          showSnackBar(
+                              context: context,
+                              text: "Cadastro efetuado com sucesso!",
+                              isError: false);
+                          //Navigator.popAndPushNamed(context, '/home');
+                        }
+                      });
                     }
                   },
                   style: const ButtonStyle(

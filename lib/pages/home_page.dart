@@ -44,9 +44,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
       body: TabBarView(controller: _tabController, children: const [
         AssistindoTabWidget(),
-        /* AssistirTab()
-        ConcluidoTab() */
+        AssistirTab(),
+        ConcluidoTab()
       ]),
     );
+  }
+}
+
+class AssistirTab extends StatelessWidget {
+  const AssistirTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class ConcluidoTab extends StatelessWidget {
+  const ConcluidoTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
