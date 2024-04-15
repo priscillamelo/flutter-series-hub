@@ -23,7 +23,6 @@ class _CriarContaPageState extends State<CriarContaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade100,
       appBar: AppBar(
         title: Image.asset('assets/logo_app.png'),
         centerTitle: true,
@@ -39,7 +38,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 const Text(
                   'Criar Conta',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

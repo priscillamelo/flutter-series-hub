@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/widgets/assistindo_tab.dart';
+import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,13 +23,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Center(
-          child: Text(
-            'My Journal: Filmes e Séries',
+        title: Image.asset('assets/logo_app.png'),
+        centerTitle: true,
+        /* leading: const Icon(
+          Icons.account_circle,
+          size: 50,
+        ),
+        leadingWidth: 100, */
+        toolbarHeight: 80,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
           ),
         ),
         bottom: TabBar(
           controller: _tabController,
+          indicator: BoxDecoration(
+            color: ColorsTheme.bgTabSelected,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          indicatorPadding:
+              const EdgeInsets.symmetric(vertical: 10, horizontal: -16),
+          labelStyle: const TextStyle(
+            color: ColorsTheme.bgInput,
+            decoration: TextDecoration.underline,
+          ),
+          unselectedLabelStyle: const TextStyle(
+            backgroundColor: Colors.transparent,
+          ),
+          splashBorderRadius: BorderRadius.circular(50),
           tabs: const [
             Tab(
               text: 'Assistindo',

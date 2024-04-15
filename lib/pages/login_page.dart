@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
+import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
 import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
 import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
 
@@ -19,8 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade100,
+      //backgroundColor: Colors.amber,
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: Image.asset('assets/logo_app.png'),
         centerTitle: true,
         forceMaterialTransparency: true,
@@ -33,9 +36,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 const Text(
-                  'Realizar login',
+                  'Login',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 48,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -59,6 +62,28 @@ class _LoginPageState extends State<LoginPage> {
                         FormFieldWidget(
                           label: 'Senha',
                           controller: _senhaController,
+                        ),
+                        Container(
+                          alignment: AlignmentDirectional.topEnd,
+                          child: TextButton(
+                            onPressed: () {
+                              //Navigator.popAndPushNamed(context, '/criarConta');
+                            },
+                            style: ButtonStyle(
+                              alignment: AlignmentDirectional.topEnd,
+                              textStyle: MaterialStateProperty.all(
+                                const TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  letterSpacing: 2,
+                                  wordSpacing: 3,
+                                ),
+                              ),
+                            ),
+                            child: const Text(
+                              "Xiiii! Esqueceu a senha?",
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 32,

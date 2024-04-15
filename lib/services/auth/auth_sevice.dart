@@ -43,4 +43,13 @@ class AuthenticationService {
       return e.code;
     }
   }
+
+  Future<String?> deslogarUsuario() async {
+    try {
+      await _firebaseAuth.signOut();
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.code;
+    }
+  }
 }

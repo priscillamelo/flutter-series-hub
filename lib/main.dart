@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/pages/criar_conta_page.dart';
 import 'package:flutter_journal_moviesandseries/pages/home_page.dart';
 import 'package:flutter_journal_moviesandseries/pages/login_page.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,8 +25,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Projetos Aplicados I',
         theme: ThemeData(
-          colorScheme:
-              ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade100),
+          scaffoldBackgroundColor: ColorsTheme.bgTela,
+          primaryColor: Colors.amber.shade400,
+          /* buttonTheme: const ButtonThemeData(
+            buttonColor: ColorsTheme.bgInputDetails,
+            textTheme: ButtonTextTheme.normal,
+          ), */
+          colorScheme: ColorScheme.fromSeed(seedColor: ColorsTheme.bgTela),
           useMaterial3: true,
         ),
         routes: {
@@ -34,7 +41,24 @@ class MyApp extends StatelessWidget {
         },
         home: const DefaultTabController(
           length: 3,
-          child: LoginPage(),
+          child: Routes(),
         ));
+  }
+}
+
+class Routes extends StatelessWidget {
+  const Routes({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.userChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const HomePage();
+          } else {
+            return const LoginPage();
+          }
+        });
   }
 }
