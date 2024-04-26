@@ -33,7 +33,9 @@ class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
   final sinopseController = TextEditingController();
   final avaliacaoController = TextEditingController();
 
-  final OptionsRegister _optionsRegister = const OptionsRegister();
+  ValuesRegister?
+      _selectedOption; // para armazenar o valor do RadioButton selecionado
+  String valueOption = 'Filme';
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +45,19 @@ class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const OptionsRegister(),
+              OptionsRegister(
+                onOptionSelected: (value) {
+                  setState(() {
+                    _selectedOption =
+                        value; // Atualize o valor do RadioButton selecionado
+                    _selectedOption.toString().contains('serie')
+                        ? valueOption = 'Série'
+                        : valueOption = 'Filme';
+                  });
+                },
+              ),
               Text(
-                'Adicionar $_optionsRegister',
+                'Adicionar $valueOption',
                 style: const TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,

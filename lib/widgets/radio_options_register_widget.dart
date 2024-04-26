@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 enum ValuesRegister { movie, serie }
 
 class OptionsRegister extends StatefulWidget {
-  const OptionsRegister({super.key});
+  final Function(ValuesRegister) onOptionSelected; // Callback para seleção
+
+  const OptionsRegister({super.key, required this.onOptionSelected});
 
   @override
   State<OptionsRegister> createState() => _OptionsRegister();
@@ -27,6 +29,7 @@ class _OptionsRegister extends State<OptionsRegister> {
                 setState(() {
                   valueRegister = value!;
                 });
+                widget.onOptionSelected(value!);
               },
             ),
           ),
@@ -39,6 +42,7 @@ class _OptionsRegister extends State<OptionsRegister> {
                 setState(() {
                   valueRegister = value!;
                 });
+                widget.onOptionSelected(value!);
               },
             ),
           ),
