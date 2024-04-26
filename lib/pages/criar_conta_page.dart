@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
 import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
-import 'package:flutter_journal_moviesandseries/widgets/text_form_field.dart';
+import 'package:flutter_journal_moviesandseries/widgets/text_form_field_widgets.dart';
 
 class CriarContaPage extends StatefulWidget {
   const CriarContaPage({super.key});

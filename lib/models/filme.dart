@@ -3,12 +3,12 @@ class Filme {
     required String titulo,
     required String? diretor,
     required String? genero,
-    required List<String>? atoresPrincipais,
+    required List<String>? elenco,
     required int? anoLancamento,
-    required List<String>? streamingDisponivel,
+    required List<String>? streaming,
     required String? sinopse,
     required String? poster,
     required double? avaliacao,
-    required String categoriaPertecente,
+    required String categoriaPertencente,
   });
 }

@@ -15,8 +15,15 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  "/addMovieOrSerie",
+                );
+              },
+              child: const Icon(Icons.add)),
           const Text("Inicie seus registros!"),
-          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
         ],
       )),
     );

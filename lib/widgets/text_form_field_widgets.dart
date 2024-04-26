@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
+
+import 'colors.dart';
 
 class FormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
