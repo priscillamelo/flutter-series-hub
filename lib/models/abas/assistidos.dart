@@ -4,7 +4,7 @@ import '../usuario.dart';
 
 class Assistidos {
   static const String aba = "Assistidos";
-  late Serie serie;
-  late Filme filme;
+  final List<Serie> listSeries = [];
+  final List<Filme> listMovies = [];
   late Usuario _usuario;
 }

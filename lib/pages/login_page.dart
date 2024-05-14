@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
-import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
-import 'package:flutter_journal_moviesandseries/widgets/text_form_field_widgets.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/snackbar_widget.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/text_form_login_widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'E-mail',
                           keyboardType: TextInputType.emailAddress,
                           controller: _emailController,
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Senha',
                           controller: _senhaController,
                         ),

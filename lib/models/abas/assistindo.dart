@@ -3,6 +3,6 @@ import '../usuario.dart';
 
 class Assistindo {
   static const String aba = "Assistindo";
-  late Serie serie;
+  late List<Serie> listSeries = [];
   late Usuario _usuario;
 }

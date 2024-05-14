@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/services/dao/filme_dao.dart';
 import 'package:flutter_journal_moviesandseries/widgets/assistindo_tab.dart';
-import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
+
+import '../widgets/assistir_tab.dart';
+import '../widgets/concluido_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -66,29 +70,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
-      body: TabBarView(controller: _tabController, children: const [
-        AssistindoTabWidget(),
-        AssistirTab(),
-        ConcluidoTab()
-      ]),
+      body: TabBarView(
+          controller: _tabController,
+          children: const [AssistindoTabWidget(), AssistirTab(), ConcluidoTab()]),
     );
-  }
-}
-
-class AssistirTab extends StatelessWidget {
-  const AssistirTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class ConcluidoTab extends StatelessWidget {
-  const ConcluidoTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

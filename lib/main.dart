@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
+import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
+import 'package:provider/provider.dart';
 // PAGES
+import 'database/app_database.dart';
 import 'pages/add_movie_serie_page.dart';
 import 'pages/criar_conta_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
-import 'routes_pages.dart';
+import 'routes/user_route.dart';
 // WIDGETS
-import 'package:flutter_journal_moviesandseries/widgets/colors.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
 // FIREBASE
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,10 +20,21 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  final database =
+      await $FloorAppDatabase.databaseBuilder('flutter_database.db').build();
+  //final filmeDao = database.filmeDao;
+
+  runApp( MultiProvider(
+    providers: [
+      ChangeNotifierProvider<MovieProvider>(create: (_) => MovieProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   @override
@@ -28,7 +43,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Projetos Aplicados I',
       theme: ThemeData(
-        scaffoldBackgroundColor: ColorsTheme.bgTela,
+        //scaffoldBackgroundColor: ColorsTheme.bgTela,
         /* buttonTheme: const ButtonThemeData(
             buttonColor: ColorsTheme.bgInputDetails,
             textTheme: ButtonTextTheme.normal,
@@ -37,14 +52,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        "/login": (context) => const LoginPage(),
-        "/criarConta": (context) => const CriarContaPage(),
-        "/home": (context) => const HomePage(),
-        "/addMovieOrSerie": (context) => const AddMovieOrSeriePage()
+        PagesRoutes.kLOGIN_PAGE: (context) => const LoginPage(),
+        PagesRoutes.kCREATE_ACCOUNT: (context) => const CriarContaPage(),
+        PagesRoutes.kHOME: (context) => const HomePage(),
+        PagesRoutes.kADD_MOVIE_SERIE: (context) => const AddMovieOrSeriePage(),
       },
       home: const DefaultTabController(
         length: 3,
-        child: Routes(),
+        child: UserRoute(),
       ),
     );
   }

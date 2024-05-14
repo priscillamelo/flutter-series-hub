@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
 
-class FormFieldWidget extends StatelessWidget {
+class LoginFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final String label;
-  const FormFieldWidget(
+  const LoginFormFieldWidget(
       {super.key,
       required this.label,
       this.keyboardType,

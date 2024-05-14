@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
-import 'package:flutter_journal_moviesandseries/widgets/snackbar_widget.dart';
-import 'package:flutter_journal_moviesandseries/widgets/text_form_field_widgets.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/snackbar_widget.dart';
+import 'package:flutter_journal_moviesandseries/widgets/customs/text_form_login_widgets.dart';
 
 class CriarContaPage extends StatefulWidget {
   const CriarContaPage({super.key});
@@ -51,42 +51,42 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Nome',
                           controller: nomeController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Sobrenome',
                           controller: sobrenomeController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Nome de usuário',
                           controller: nomeUsuarioController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'E-mail',
                           controller: emailController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Senha',
                           controller: senhaController,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        FormFieldWidget(
+                        LoginFormFieldWidget(
                           label: 'Confirmar senha',
                           controller: confirmarSenhaController,
                         ),
