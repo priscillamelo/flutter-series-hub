@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
 import 'package:flutter_journal_moviesandseries/widgets/customs/text_form_dados_widget.dart';
 import 'package:flutter_journal_moviesandseries/widgets/radio_options_register_widget.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ class FormAddMovieOrSerie extends StatefulWidget {
 
 class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
   late MovieProvider movieProvider;
+  late FilmeRepository filmeRepository;
   ValuesRegister? _selectedOption;
   // para armazenar o valor do RadioButton selecionado
   String valueOption = "Filme";
@@ -45,6 +47,7 @@ class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
   @override
   Widget build(BuildContext context) {
     movieProvider = Provider.of<MovieProvider>(context);
+    filmeRepository = Provider.of<FilmeRepository>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Center(

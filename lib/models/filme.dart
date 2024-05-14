@@ -2,18 +2,18 @@ import 'package:floor/floor.dart';
 
 @entity
 class Filme {
-  static const String filmeTable = 'filme_table';
-  static const String idColumn = 'id';
-  static const String tituloColumn = 'titulo';
-  static const String diretorColumn = 'diretor';
-  static const String generoColumn = 'genero';
-  static const String elencoColumn = 'elenco';
-  static const String anoLancamentoColumn = 'ano_lancamento';
-  static const String streamingColumn = 'streaming';
-  static const String sinopseColumn = 'sinopse';
-  static const String posterColumn = 'poster';
-  static const String avaliacaoColumn = 'avaliacao';
-  static const String categoriaPertencenteColumn = 'categoriaPertencente';
+  static const String kMOVIETABLE = 'movie_table';
+  static const String kIDMOVIECOLUMN = 'idColumnMovie';
+  static const String kTITLEMOVIECOLUMN = 'titleColumnMovie';
+  static const String kDIRECTORMOVIECOLUMN = 'directorColumnMovie';
+  static const String kGENREMOVIECOLUMN = 'genreColumnMovie';
+  static const String kCASTMOVIECOLUMN = 'castColumnMovie';
+  static const String kRELEASEYEARMOVIECOLUMN = 'releaseYearColumnMovie';
+  static const String kSTREAMINGMOVIECOLUMN = 'streamingColumnMovie';
+  static const String kSYNOPSISMOVIECOLUMN = 'synopsisColumnMovie';
+  static const String kPOSTERMOVIECOLUMN = 'posterColumnMovie';
+  static const String kRATINGMOVIECOLUMN = 'ratingColumnMovie';
+  static const String kTABNAMEMOVIECOLUMN = 'tabNameColumnMovie';
 
   @primaryKey
   int id = 0;
@@ -32,21 +32,21 @@ class Filme {
   Filme(this.titulo, this.anoLancamento, {required this.categoriaPertencente});
 
   Filme.fromMap(Map map) {
-    id = map[idColumn];
-    titulo = map[tituloColumn];
-    diretor = map[diretorColumn];
-    anoLancamento = map[anoLancamentoColumn];
-    genero = map[generoColumn];
-    avaliacao = map[avaliacaoColumn];
+    id = map[kIDMOVIECOLUMN];
+    titulo = map[kTITLEMOVIECOLUMN];
+    diretor = map[kDIRECTORMOVIECOLUMN];
+    anoLancamento = map[kRELEASEYEARMOVIECOLUMN];
+    genero = map[kGENREMOVIECOLUMN];
+    avaliacao = map[kRATINGMOVIECOLUMN];
   }
 
   Map<String, dynamic> toMap() {
     return {
-      tituloColumn: titulo,
-      diretorColumn: diretor,
-      anoLancamentoColumn: anoLancamento,
-      generoColumn: genero,
-      avaliacaoColumn: avaliacao,
+      kTITLEMOVIECOLUMN: titulo,
+      kDIRECTORMOVIECOLUMN: diretor,
+      kRELEASEYEARMOVIECOLUMN: anoLancamento,
+      kGENREMOVIECOLUMN: genero,
+      kRATINGMOVIECOLUMN: avaliacao,
     };
   }
 }

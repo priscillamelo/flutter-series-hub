@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
 import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
 import 'package:provider/provider.dart';
 // PAGES
 import 'pages/add_movie_serie_page.dart';
@@ -25,7 +26,12 @@ void main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<MovieProvider>(create: (_) => MovieProvider()),
+      ChangeNotifierProvider<MovieProvider>(
+        create: (_) => MovieProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => FilmeRepository(),
+      ),
     ],
     child: const MyApp(),
   ));

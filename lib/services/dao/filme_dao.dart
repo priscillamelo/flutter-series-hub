@@ -3,7 +3,7 @@ import 'package:flutter_journal_moviesandseries/models/filme.dart';
 
 @dao
 abstract class FilmeDao {
-  @Query('SELECT * FROM ${Filme.filmeTable}')
+  @Query('SELECT * FROM ${Filme.kMOVIETABLE}')
   Future<List<Filme>> getAllFilmes();
 
   @insert
