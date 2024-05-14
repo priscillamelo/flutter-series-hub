@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
 
-class Routes extends StatelessWidget {
-  const Routes({super.key});
-
+class RoutesApp extends StatelessWidget {
+  const RoutesApp({super.key});
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
