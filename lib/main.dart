@@ -3,7 +3,6 @@ import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
 import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 import 'package:provider/provider.dart';
 // PAGES
-import 'database/app_database.dart';
 import 'pages/add_movie_serie_page.dart';
 import 'pages/criar_conta_page.dart';
 import 'pages/home_page.dart';
@@ -21,11 +20,10 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final database =
-      await $FloorAppDatabase.databaseBuilder('flutter_database.db').build();
+  //final database = await $FloorAppDatabase.databaseBuilder('flutter_database.db').build();
   //final filmeDao = database.filmeDao;
 
-  runApp( MultiProvider(
+  runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<MovieProvider>(create: (_) => MovieProvider()),
     ],
@@ -34,7 +32,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({super.key});
 
   @override

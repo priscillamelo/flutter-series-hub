@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/main.dart';
 import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
 import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
@@ -19,52 +18,58 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //movieProvider = context.watch<MovieProvider>();
     movieProvider = Provider.of<MovieProvider>(context);
-    //Future<List<Filme>> listMovies = movieProvider.getAllMovies as
-    // Future<List<Filme>>;
-    return Consumer<MovieProvider>(
-        builder: (context, movieProvider, child){
-          return movieProvider.getAllMovies.isEmpty
-              ? Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // TODO: CRIAR COMPONENTE DE FLOATING BUTTON
-                FloatingActionButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        PagesRoutes.kADD_MOVIE_SERIE,
-                        arguments: Assistindo.aba,
-                      );
-                    },
-                    child: const Icon(Icons.add)),
-                const Text("Inicie seus registros!"),
-              ],
-            ),
-          )
-              : Scaffold(
-            body: ListView.builder(
-              itemCount: movieProvider.getAllMovies.length,
-              itemBuilder: (context, index) {
-                return RegistroItem(
-                  filme: movieProvider.getAllMovies[index],
-                );
-              },
-            ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    PagesRoutes.kADD_MOVIE_SERIE,
-                    arguments: Assistindo.aba,
+
+/*     List<Serie> listSeries = [];
+
+    // TODO: MUDAR O PROVIDER PARA DE SERIES
+    for (var serie in movieProvider.getAllSeries) {
+      if (serie.categoriaPertencente == Assistindo.aba) {
+        listSeries.add(serie);
+      }
+    }
+    Assistindo().setListSeries = listSeries; */
+    return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
+      return movieProvider.getAllMovies.isEmpty
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // TODO: CRIAR COMPONENTE DE FLOATING BUTTON
+                  FloatingActionButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          PagesRoutes.kADD_MOVIE_SERIE,
+                          arguments: Assistindo.aba,
+                        );
+                      },
+                      child: const Icon(Icons.add)),
+                  const Text("Inicie seus registros!"),
+                ],
+              ),
+            )
+          : Scaffold(
+              body: ListView.builder(
+                itemCount: movieProvider.getAllMovies.length,
+                itemBuilder: (context, index) {
+                  return RegistroItem(
+                    filme: movieProvider.getAllMovies[index],
                   );
                 },
-                child: const Icon(Icons.add)),
-          );
+              ),
+              floatingActionButton: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      PagesRoutes.kADD_MOVIE_SERIE,
+                      arguments: Assistindo.aba,
+                    );
+                  },
+                  child: const Icon(Icons.add)),
+            );
     });
-      /*FutureBuilder(
+    /*FutureBuilder(
         future: listMovies,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -166,7 +171,6 @@ class RegistroItem extends StatelessWidget {
                 "${filme.titulo} lançado em ${filme.anoLancamento} excluído com sucesso"),
           ),
         );
-
       },
     );
   }

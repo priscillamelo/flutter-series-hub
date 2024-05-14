@@ -1,10 +1,24 @@
 import '../serie.dart';
 import '../filme.dart';
-import '../usuario.dart';
 
 class Assistir {
   static const String aba = "Assistir";
-  final List<Serie> listSeries = [];
+  late List<Serie> listSeries = [];
   late List<Filme> listMovies = [];
-  late Usuario _usuario;
+
+  static final Assistir _assistirSingleton = Assistir._internal();
+
+  factory Assistir() {
+    return _assistirSingleton;
+  }
+
+  Assistir._internal();
+
+  List<Filme> get getListMovies {
+    return listMovies;
+  }
+
+  set setListMovies(List<Filme> listMovies) {
+    this.listMovies = listMovies;
+  }
 }

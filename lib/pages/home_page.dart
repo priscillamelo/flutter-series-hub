@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/services/dao/filme_dao.dart';
 import 'package:flutter_journal_moviesandseries/widgets/assistindo_tab.dart';
 import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
 
@@ -70,9 +69,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
-      body: TabBarView(
-          controller: _tabController,
-          children: const [AssistindoTabWidget(), AssistirTab(), ConcluidoTab()]),
+      body: TabBarView(controller: _tabController, children: const [
+        AssistindoTabWidget(),
+        AssistirTab(),
+        ConcluidoTab()
+      ]),
     );
   }
 }
