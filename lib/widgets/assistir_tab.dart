@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/models/abas/assistir.dart';
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
+import 'package:flutter_journal_moviesandseries/widgets/floating_button_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/movie_provider.dart';
@@ -30,18 +31,15 @@ class _AssistirTabState extends State<AssistirTab> {
     Assistir().setListMovies = listMovies;
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       if (Assistir().getListMovies.isEmpty) {
-        return Center(
+        return const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // TODO: CRIAR COMPONENTE DE FLOATING BUTTON
-              FloatingActionButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
-                        arguments: Assistir.aba);
-                  },
-                  child: const Icon(Icons.add)),
-              const Text("Inicie seus registros!"),
+              FloatingButtonWidget(
+                routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                nameTab: Assistir.aba,
+              ),
+              Text("Inicie seus registros!"),
             ],
           ),
         );
@@ -55,12 +53,10 @@ class _AssistirTabState extends State<AssistirTab> {
               );
             },
           ),
-          floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
-                    arguments: Assistir.aba);
-              },
-              child: const Icon(Icons.add)),
+          floatingActionButton: const FloatingButtonWidget(
+            routeName: PagesRoutes.kADD_MOVIE_SERIE,
+            nameTab: Assistir.aba,
+          ),
         );
       }
     });

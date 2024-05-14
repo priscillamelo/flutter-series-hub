@@ -3,6 +3,7 @@ import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
 import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
 import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
+import 'package:flutter_journal_moviesandseries/widgets/floating_button_widget.dart';
 import 'package:provider/provider.dart';
 
 class AssistindoTabWidget extends StatefulWidget {
@@ -31,21 +32,15 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
     Assistindo().setListSeries = listSeries; */
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       return movieProvider.getAllMovies.isEmpty
-          ? Center(
+          ? const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // TODO: CRIAR COMPONENTE DE FLOATING BUTTON
-                  FloatingActionButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          PagesRoutes.kADD_MOVIE_SERIE,
-                          arguments: Assistindo.aba,
-                        );
-                      },
-                      child: const Icon(Icons.add)),
-                  const Text("Inicie seus registros!"),
+                  FloatingButtonWidget(
+                    routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                    nameTab: Assistindo.aba,
+                  ),
+                  Text("Inicie seus registros!"),
                 ],
               ),
             )
@@ -58,15 +53,10 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
                   );
                 },
               ),
-              floatingActionButton: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      PagesRoutes.kADD_MOVIE_SERIE,
-                      arguments: Assistindo.aba,
-                    );
-                  },
-                  child: const Icon(Icons.add)),
+              floatingActionButton: const FloatingButtonWidget(
+                routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                nameTab: Assistindo.aba,
+              ),
             );
     });
     /*FutureBuilder(
