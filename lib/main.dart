@@ -4,6 +4,7 @@ import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
 import 'package:provider/provider.dart';
 // PAGES
+import 'firebase_options.dart';
 import 'pages/add_movie_serie_page.dart';
 import 'pages/criar_conta_page.dart';
 import 'pages/home_page.dart';
@@ -13,7 +14,6 @@ import 'routes/user_route.dart';
 import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
 // FIREBASE
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
