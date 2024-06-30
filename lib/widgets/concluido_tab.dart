@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/filme.dart';
 import '../provider/movie_provider.dart';
 import '../routes/pages_routes.dart';
-import 'assistindo_tab.dart';
+import 'item_movie_widget.dart';
 
 class ConcluidoTab extends StatefulWidget {
   const ConcluidoTab({super.key});
@@ -49,7 +49,7 @@ class _ConcluidoTabState extends State<ConcluidoTab> {
           body: ListView.builder(
             itemCount: Assistidos().getListMovies.length,
             itemBuilder: (context, index) {
-              return RegistroItem(
+              return ItemMovieWidget(
                 filme: Assistidos().listMovies.elementAt(index),
               );
             },

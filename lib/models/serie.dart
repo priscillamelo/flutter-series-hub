@@ -15,21 +15,19 @@ class Serie {
   static const String kFINISHDATESERIECOLUMN = 'finishDateColumnSerie';
   static const String kTABNAMESERIECOLUMN = 'tabNameColumnSerie';
 
-  Serie({
-    required String titulo,
-    required String? diretor,
-    required String? genero,
-    required List<String>? elenco,
-    required int? anoLancada,
-    required int? anoFinalizada,
-    required List<String>? streaming,
-    required String? sinopse,
-    required String? poster,
-    required double? avaliacao,
-    required int? temporadas,
-    required DateTime? dataFinalizada,
-    required String categoriaPertecente,
-  });
+  String titulo = "";
+  int anoLancamento = 0;
+  int? anoFinalizada;
+  int? temporadas;
+  String? diretor;
+  String? genero;
+  String? elenco;
+  String? streaming;
+  String? sinopse;
+  String? poster;
+  double? avaliacao;
+  DateTime? dataFinalizada;
+  String? categoriaPertencente = "";
 
 /*   var dataEspecifica = DateTime(2024, 4, 15);
   print("Data específica: $dataEspecifica"); */

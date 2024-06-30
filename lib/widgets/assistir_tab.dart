@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../provider/movie_provider.dart';
 import '../routes/pages_routes.dart';
-import 'assistindo_tab.dart';
+import 'item_movie_widget.dart';
 
 class AssistirTab extends StatefulWidget {
   const AssistirTab({super.key});
@@ -48,7 +48,7 @@ class _AssistirTabState extends State<AssistirTab> {
           body: ListView.builder(
             itemCount: Assistir().getListMovies.length,
             itemBuilder: (context, index) {
-              return RegistroItem(
+              return ItemMovieWidget(
                 filme: Assistir().getListMovies.elementAt(index),
               );
             },
