@@ -1,21 +1,23 @@
-// FIREBASE
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
-import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
-import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
-// WIDGETS
-import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
-import 'package:provider/provider.dart';
-
-// PAGES
+// FIREBASE
 import 'firebase_options.dart';
-import 'pages/add_data_page.dart';
-import 'pages/criar_conta_page.dart';
-import 'pages/home_page.dart';
-import 'pages/login_page.dart';
-import 'pages/update_data_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+// PROVIDER
+import 'package:provider/provider.dart';
+import 'provider/movie_provider.dart';
+// ROUTES
+import 'routes/pages_routes.dart';
 import 'routes/user_route.dart';
+// SERVICE
+import 'services/repository/filme_repository.dart';
+// INTERFACE - UI
+import 'interface/pages/add_data_page.dart';
+import 'interface/pages/criar_conta_page.dart';
+import 'interface/pages/home_page.dart';
+import 'interface/pages/login_page.dart';
+import 'interface/pages/update_data_page.dart';
+// VALUES
+import 'interface/widgets/customs/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,12 +47,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Projetos Aplicados I',
       theme: ThemeData(
-        //scaffoldBackgroundColor: ColorsTheme.bgTela,
-        /* buttonTheme: const ButtonThemeData(
-            buttonColor: ColorsTheme.bgInputDetails,
-            textTheme: ButtonTextTheme.normal,
-          ), */
-        colorScheme: ColorScheme.fromSeed(seedColor: ColorsTheme.bgTela),
+        scaffoldBackgroundColor: ColorsTheme.bgTela,
+        textTheme: const TextTheme(),
+        buttonTheme: const ButtonThemeData(
+          buttonColor: ColorsTheme.bgInputDetails,
+          textTheme: ButtonTextTheme.normal,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: ColorsTheme.bgTela, primary: ColorsTheme.bgTela),
         useMaterial3: true,
       ),
       routes: {

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/services/auth/auth_sevice.dart';
-import 'package:flutter_journal_moviesandseries/widgets/customs/snackbar_widget.dart';
-import 'package:flutter_journal_moviesandseries/widgets/customs/text_form_login_widgets.dart';
+
+// SERVICE
+import '../../services/auth/auth_sevice.dart';
+// WIDGET
+import '../widgets/customs/snackbar_widget.dart';
+import '../widgets/customs/text_form_login_widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,7 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../pages/home_page.dart';
-import '../pages/login_page.dart';
+
+// FIREBASE
+import 'package:firebase_auth/firebase_auth.dart';
+// INTERFACE - UI
+import 'package:flutter_journal_moviesandseries/interface/pages/home_page.dart';
+import 'package:flutter_journal_moviesandseries/interface/pages/login_page.dart';
 
 class UserRoute extends StatelessWidget {
   const UserRoute({super.key});

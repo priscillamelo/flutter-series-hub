@@ -1,6 +1,3 @@
-import 'package:floor/floor.dart';
-
-@entity
 class Filme {
   static const String kMOVIETABLE = 'movie_table';
   static const String kIDMOVIECOLUMN = 'idColumnMovie';
@@ -15,9 +12,7 @@ class Filme {
   static const String kRATINGMOVIECOLUMN = 'ratingColumnMovie';
   static const String kTABNAMEMOVIECOLUMN = 'tabNameColumnMovie';
 
-  @primaryKey
   int id = 0;
-
   String titulo = "";
   int anoLancamento = 0;
   String? diretor;

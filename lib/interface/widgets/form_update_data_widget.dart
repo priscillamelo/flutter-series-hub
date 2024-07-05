@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/abas/tab_types.dart';
-import '../models/filme.dart';
-import '../services/repository/filme_repository.dart';
+import '../../models/abas/tab_types.dart';
+// MODEL
+import '../../models/filme.dart';
+// SERVICE
+import '../../services/repository/filme_repository.dart';
+// WIDGETS
 import 'customs/text_form_dados_widget.dart';
 
 class FormUpdateDataWidget extends StatefulWidget {

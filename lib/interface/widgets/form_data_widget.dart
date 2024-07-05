@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../models/abas/tab_types.dart';
-import '../models/filme.dart';
-import '../provider/movie_provider.dart';
-import '../services/repository/filme_repository.dart';
+// PROVIDER
+import 'package:provider/provider.dart';
+import '../../provider/movie_provider.dart';
+// SERVICE
+import '../../services/repository/filme_repository.dart';
+// MODEL
+import '../../models/filme.dart';
+import '../../models/abas/tab_types.dart';
+// WIDGETS
 import 'customs/text_form_dados_widget.dart';
 import 'radio_options_register_widget.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
+import './colors.dart';
 
 class DadosFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;

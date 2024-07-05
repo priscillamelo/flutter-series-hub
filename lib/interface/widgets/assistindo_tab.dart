@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
-import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
-import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
-import 'package:flutter_journal_moviesandseries/widgets/floating_button_widget.dart';
-import 'package:provider/provider.dart';
 
+// PROVIDER
+import 'package:provider/provider.dart';
+import '../../provider/movie_provider.dart';
+// MODEL
+import '../../models/abas/assistindo.dart';
+// ROUTES
+import '../../routes/pages_routes.dart';
+// WIDGET
+import 'floating_button_widget.dart';
+import 'home_no_data_widget.dart';
 import 'item_serie_widget.dart';
 
 class AssistindoTabWidget extends StatefulWidget {
@@ -33,19 +38,7 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
     Assistindo().setListSeries = listSeries; */
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       return Assistindo().getListSeries.isEmpty
-          ? const Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FloatingButtonWidget(
-                    heroTagName: '',
-                    routeName: PagesRoutes.kADD_MOVIE_SERIE,
-                    nameTab: Assistindo.aba,
-                  ),
-                  Text("Inicie seus registros!"),
-                ],
-              ),
-            )
+          ? const HomeNoDataWidget()
           : Scaffold(
               body: ListView.builder(
                 itemCount: Assistindo().getListSeries.length,
@@ -55,7 +48,7 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
                   );
                 },
               ),
-              floatingActionButton: const FloatingButtonWidget(
+              floatingActionButton: const FloatingButtonWidgetSmall(
                 heroTagName: '',
                 routeName: PagesRoutes.kADD_MOVIE_SERIE,
                 nameTab: Assistindo.aba,

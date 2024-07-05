@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/models/abas/assistir.dart';
-import 'package:flutter_journal_moviesandseries/widgets/floating_button_widget.dart';
-import 'package:provider/provider.dart';
 
-import '../routes/pages_routes.dart';
-import '../services/repository/filme_repository.dart';
+// PROVIDER
+import 'package:provider/provider.dart';
+// SERVICE
+import '../../services/repository/filme_repository.dart';
+// MODEL
+import '../../models/abas/assistir.dart';
+// ROUTES
+import '../../routes/pages_routes.dart';
+// WIDGET
+import 'floating_button_widget.dart';
+import 'home_no_data_widget.dart';
+
 import 'item_movie_widget.dart';
 
 class AssistirTab extends StatefulWidget {
@@ -22,19 +29,7 @@ class _AssistirTabState extends State<AssistirTab> {
       future: filmeRepository.getAllMovies(),
       builder: (context, snapshot) {
         if (snapshot.data?.isEmpty ?? true) {
-          return const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FloatingButtonWidget(
-                  heroTagName: 'route-add-1',
-                  routeName: PagesRoutes.kADD_MOVIE_SERIE,
-                  nameTab: Assistir.aba,
-                ),
-                Text("Inicie seus registros!"),
-              ],
-            ),
-          );
+          return const HomeNoDataWidget();
         } else {
           return Scaffold(
             body: ListView.builder(
@@ -45,7 +40,7 @@ class _AssistirTabState extends State<AssistirTab> {
                     nameTab: Assistir.aba,
                   );
                 }),
-            floatingActionButton: const FloatingButtonWidget(
+            floatingActionButton: const FloatingButtonWidgetSmall(
               heroTagName: 'route-add-2',
               routeName: PagesRoutes.kADD_MOVIE_SERIE,
               nameTab: Assistir.aba,

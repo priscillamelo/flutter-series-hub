@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+// PROVIDER
 import 'package:provider/provider.dart';
-
-import '../models/filme.dart';
-import '../routes/pages_routes.dart';
-import '../services/repository/filme_repository.dart';
+// ROUTE
+import '../../routes/pages_routes.dart';
+// MODEL
+import '../../models/filme.dart';
+// SERVICE
+import '../../services/repository/filme_repository.dart';
 
 class ItemMovieWidget extends StatefulWidget {
   final Filme filme;
@@ -19,6 +22,7 @@ class ItemMovieWidget extends StatefulWidget {
 class _ItemMovieWidgetState extends State<ItemMovieWidget> {
   @override
   Widget build(BuildContext context) {
+    final Filme filme = widget.filme;
     final filmeRepository = Provider.of<FilmeRepository>(context);
     return GestureDetector(
       child: Card(
@@ -26,6 +30,13 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
         margin: const EdgeInsets.all(8),
         child: ListTile(
           contentPadding: const EdgeInsets.all(16),
+          leading: Column(
+            children: [
+              Container(
+                child:  Image.asset(''),
+              )
+            ],
+          ),
           title: Text(
             widget.filme.titulo,
             style: const TextStyle(
