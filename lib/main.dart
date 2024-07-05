@@ -1,28 +1,27 @@
+// FIREBASE
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/provider/movie_provider.dart';
 import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
+// WIDGETS
+import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
 import 'package:provider/provider.dart';
+
 // PAGES
 import 'firebase_options.dart';
-import 'pages/add_movie_serie_page.dart';
+import 'pages/add_data_page.dart';
 import 'pages/criar_conta_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
+import 'pages/update_data_page.dart';
 import 'routes/user_route.dart';
-// WIDGETS
-import 'package:flutter_journal_moviesandseries/widgets/customs/colors.dart';
-// FIREBASE
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  //final database = await $FloorAppDatabase.databaseBuilder('flutter_database.db').build();
-  //final filmeDao = database.filmeDao;
 
   runApp(MultiProvider(
     providers: [
@@ -58,7 +57,8 @@ class MyApp extends StatelessWidget {
         PagesRoutes.kLOGIN_PAGE: (context) => const LoginPage(),
         PagesRoutes.kCREATE_ACCOUNT: (context) => const CriarContaPage(),
         PagesRoutes.kHOME: (context) => const HomePage(),
-        PagesRoutes.kADD_MOVIE_SERIE: (context) => const AddMovieOrSeriePage(),
+        PagesRoutes.kADD_MOVIE_SERIE: (context) => const AddDataPage(),
+        PagesRoutes.kUPDATE_MOVIE_SERIE: (context) => const UpdateDataPage(),
       },
       home: const DefaultTabController(
         length: 3,

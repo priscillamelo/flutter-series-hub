@@ -121,7 +121,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     }
                   },
                   style: const ButtonStyle(
-                    padding: MaterialStatePropertyAll(
+                    padding: WidgetStatePropertyAll(
                       EdgeInsets.only(
                         top: 16,
                         right: 52,
@@ -145,7 +145,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     Navigator.popAndPushNamed(context, "/login");
                   },
                   style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
+                    textStyle: WidgetStateProperty.all(
                       const TextStyle(
                         decoration: TextDecoration.underline,
                         letterSpacing: 2,

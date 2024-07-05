@@ -38,6 +38,7 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FloatingButtonWidget(
+                    heroTagName: '',
                     routeName: PagesRoutes.kADD_MOVIE_SERIE,
                     nameTab: Assistindo.aba,
                   ),
@@ -55,6 +56,7 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
                 },
               ),
               floatingActionButton: const FloatingButtonWidget(
+                heroTagName: '',
                 routeName: PagesRoutes.kADD_MOVIE_SERIE,
                 nameTab: Assistindo.aba,
               ),

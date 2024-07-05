@@ -1,36 +1,22 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_journal_moviesandseries/models/filme.dart';
-import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
-import 'package:flutter_journal_moviesandseries/widgets/customs/text_form_dados_widget.dart';
-import 'package:flutter_journal_moviesandseries/widgets/radio_options_register_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../models/abas/tab_types.dart';
+import '../models/filme.dart';
 import '../provider/movie_provider.dart';
+import '../services/repository/filme_repository.dart';
+import 'customs/text_form_dados_widget.dart';
+import 'radio_options_register_widget.dart';
 
-class AddMovieOrSeriePage extends StatelessWidget {
-  const AddMovieOrSeriePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    Object title = ModalRoute.of(context)!.settings.arguments.toString();
-    debugPrint(title.toString());
-    return Scaffold(
-      body: FormAddMovieOrSerie(categoriaPertencente: title.toString()),
-    );
-  }
-}
-
-class FormAddMovieOrSerie extends StatefulWidget {
+class FormDataWidget extends StatefulWidget {
   final String categoriaPertencente;
-  const FormAddMovieOrSerie({super.key, required this.categoriaPertencente});
+  const FormDataWidget({super.key, required this.categoriaPertencente});
 
   @override
-  State<FormAddMovieOrSerie> createState() => _FormAddMovieOrSerie();
+  State<FormDataWidget> createState() => _FormDataWidget();
 }
 
-class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
+class _FormDataWidget extends State<FormDataWidget> {
   late MovieProvider movieProvider;
   late FilmeRepository filmeRepository;
   ValuesRegister? _selectedOption;
@@ -48,7 +34,7 @@ class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
   @override
   Widget build(BuildContext context) {
     String tabName = widget.categoriaPertencente;
-    movieProvider = Provider.of<MovieProvider>(context);
+    //movieProvider = Provider.of<MovieProvider>(context);
     filmeRepository = Provider.of<FilmeRepository>(context);
     return Scaffold(
       appBar: AppBar(),
@@ -138,11 +124,13 @@ class _FormAddMovieOrSerie extends State<FormAddMovieOrSerie> {
                     int.parse(anoLancamentoController.text),
                     categoriaPertencente: widget.categoriaPertencente,
                   );
-                  movieProvider.saveMovie(filme);
+                  filmeRepository.addFilme(filme);
+
+                  //movieProvider.saveMovie(filme);
                   //TODO: CRIAR COMPONENTE DE SNACKBAR
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text("Aba ${widget.categoriaPertencente}"),
+                      content: Text("${filme.titulo} adicionado no banco"),
                     ),
                   );
                   Navigator.pop(context);

@@ -37,6 +37,7 @@ class _ConcluidoTabState extends State<ConcluidoTab> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FloatingButtonWidget(
+                heroTagName: '',
                 routeName: PagesRoutes.kADD_MOVIE_SERIE,
                 nameTab: Assistidos.aba,
               ),
@@ -51,10 +52,12 @@ class _ConcluidoTabState extends State<ConcluidoTab> {
             itemBuilder: (context, index) {
               return ItemMovieWidget(
                 filme: Assistidos().listMovies.elementAt(index),
+                nameTab: Assistidos.aba,
               );
             },
           ),
           floatingActionButton: const FloatingButtonWidget(
+            heroTagName: '',
             routeName: PagesRoutes.kADD_MOVIE_SERIE,
             nameTab: Assistidos.aba,
           ),

@@ -2,15 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/filme.dart';
-import '../provider/movie_provider.dart';
+import '../routes/pages_routes.dart';
+import '../services/repository/filme_repository.dart';
 
-class ItemMovieWidget extends StatelessWidget {
+class ItemMovieWidget extends StatefulWidget {
   final Filme filme;
-  // final FilmeDao? filmeDao;
-  const ItemMovieWidget({super.key, required this.filme});
+  final String nameTab;
+
+  const ItemMovieWidget(
+      {super.key, required this.filme, required this.nameTab});
 
   @override
+  State<ItemMovieWidget> createState() => _ItemMovieWidgetState();
+}
+
+class _ItemMovieWidgetState extends State<ItemMovieWidget> {
+  @override
   Widget build(BuildContext context) {
+    final filmeRepository = Provider.of<FilmeRepository>(context);
     return GestureDetector(
       child: Card(
         elevation: 4,
@@ -18,7 +27,7 @@ class ItemMovieWidget extends StatelessWidget {
         child: ListTile(
           contentPadding: const EdgeInsets.all(16),
           title: Text(
-            filme.titulo,
+            widget.filme.titulo,
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -28,10 +37,10 @@ class ItemMovieWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
-              Text(filme.anoLancamento.toString()),
+              Text(widget.filme.anoLancamento.toString()),
             ],
           ),
-          trailing: Text(filme.categoriaPertencente.toString()),
+          trailing: Text(widget.filme.categoriaPertencente.toString()),
           /* leading: Image.network(
             pokemon.imageUrl,
             width: 80,
@@ -40,23 +49,55 @@ class ItemMovieWidget extends StatelessWidget {
           ), */
         ),
       ),
-      /* onTap: () {
-        print(pokemon.nome);
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => TelaDetalhesPokemon(id: pokemon.id, dao: dao),
-          ),
-        );
-      }, */
+      onTap: () {
+        Navigator.pushNamed(context, PagesRoutes.kUPDATE_MOVIE_SERIE,
+            arguments: widget.filme.id.toString());
+      },
       onLongPress: () {
-        //movieProvider.removeMovie(filme);
-        Provider.of<MovieProvider>(context, listen: false).removeMovie(filme);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                "${filme.titulo} lançado em ${filme.anoLancamento} excluído com sucesso"),
-          ),
-        );
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Deseja Excluir ${widget.filme.titulo}?"),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Não"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          final int numberRowsAffected;
+                          numberRowsAffected = await filmeRepository
+                              .deleteMovie(widget.filme.id);
+                          if (!context.mounted) return;
+                          if (numberRowsAffected != 0) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Deletado com sucesso"),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Erro no processo de exclusão!"),
+                              ),
+                            );
+                          }
+
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Sim"),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            });
       },
     );
   }

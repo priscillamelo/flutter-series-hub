@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/models/abas/assistir.dart';
-import 'package:flutter_journal_moviesandseries/models/filme.dart';
 import 'package:flutter_journal_moviesandseries/widgets/floating_button_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/movie_provider.dart';
 import '../routes/pages_routes.dart';
+import '../services/repository/filme_repository.dart';
 import 'item_movie_widget.dart';
 
 class AssistirTab extends StatefulWidget {
@@ -16,49 +15,50 @@ class AssistirTab extends StatefulWidget {
 }
 
 class _AssistirTabState extends State<AssistirTab> {
-  late MovieProvider movieProvider;
-
   @override
   Widget build(BuildContext context) {
-    movieProvider = Provider.of<MovieProvider>(context);
-    List<Filme> listMovies = [];
-
-    for (var movie in movieProvider.getAllMovies) {
-      if (movie.categoriaPertencente == Assistir.aba) {
-        listMovies.add(movie);
-      }
-    }
-    Assistir().setListMovies = listMovies;
-    return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
-      if (Assistir().getListMovies.isEmpty) {
-        return const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FloatingButtonWidget(
-                routeName: PagesRoutes.kADD_MOVIE_SERIE,
-                nameTab: Assistir.aba,
-              ),
-              Text("Inicie seus registros!"),
-            ],
-          ),
-        );
-      } else {
-        return Scaffold(
-          body: ListView.builder(
-            itemCount: Assistir().getListMovies.length,
-            itemBuilder: (context, index) {
-              return ItemMovieWidget(
-                filme: Assistir().getListMovies.elementAt(index),
-              );
-            },
-          ),
-          floatingActionButton: const FloatingButtonWidget(
-            routeName: PagesRoutes.kADD_MOVIE_SERIE,
-            nameTab: Assistir.aba,
-          ),
-        );
-      }
-    });
+    final filmeRepository = Provider.of<FilmeRepository>(context);
+    return FutureBuilder(
+      future: filmeRepository.getAllMovies(),
+      builder: (context, snapshot) {
+        if (snapshot.data?.isEmpty ?? true) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingButtonWidget(
+                  heroTagName: 'route-add-1',
+                  routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                  nameTab: Assistir.aba,
+                ),
+                Text("Inicie seus registros!"),
+              ],
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return ItemMovieWidget(
+                    filme: snapshot.data![index],
+                    nameTab: Assistir.aba,
+                  );
+                }),
+            floatingActionButton: const FloatingButtonWidget(
+              heroTagName: 'route-add-2',
+              routeName: PagesRoutes.kADD_MOVIE_SERIE,
+              nameTab: Assistir.aba,
+            ),
+          );
+        }
+      },
+    );
   }
 }
+
+/* List<Filme> listFilmes = [];
+
+      for (Map i in listMap) {
+        listFilmes.add(Filme.fromMap(i));
+      } */

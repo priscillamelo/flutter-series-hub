@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/database/database.dart';
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
-import 'package:sqflite/sqflite.dart';
 
 class FilmeRepository extends ChangeNotifier {
   String get sqlTableMovie => '''
@@ -20,73 +19,55 @@ class FilmeRepository extends ChangeNotifier {
   )
 ''';
 
-  late Database movieDatabase;
-
+  late DB movieDatabase;
   FilmeRepository() {
     _initRepository();
   }
 
   _initRepository() async {
-    await _getListMovies();
+    await getAllMovies();
   }
 
-  _getListMovies() async {
-    movieDatabase = await DB().getDatabase;
+  Future<List<Filme>> getAllMovies() async {
+    movieDatabase = DB.instanceDatabase;
 
-    List listMapMovies = await movieDatabase.query(Filme.kMOVIETABLE);
+    List listMapMovies = await movieDatabase.getAllMovies();
     List<Filme> listMovies = [];
 
     for (Map i in listMapMovies) {
       listMovies.add(Filme.fromMap(i));
     }
+
     notifyListeners();
-  }
-
-  Future<List> getAllMovies() async {
-    movieDatabase = await DB().getDatabase;
-
-    List listMapMovies = await movieDatabase.query(Filme.kMOVIETABLE);
-    List<Filme> listMovies = [];
-
-    for (Map i in listMapMovies) {
-      listMovies.add(Filme.fromMap(i));
-    }
-
-    //notifyListeners();
     return listMovies;
   }
 
   Future<void> addFilme(Filme filme) async {
-    movieDatabase = await DB().getDatabase;
-
-    await movieDatabase.insert(Filme.kMOVIETABLE, filme.toMap());
+    movieDatabase = DB.instanceDatabase;
+    movieDatabase.addFilme(filme);
   }
 
   Future<void> updateMovie(Filme filme) async {
-    movieDatabase = await DB().getDatabase;
+    debugPrint("debug no banco: ${filme.titulo}");
+    movieDatabase = DB.instanceDatabase;
 
-    await movieDatabase.update(Filme.kMOVIETABLE, filme.toMap(),
-        where: "${Filme.kIDMOVIECOLUMN} = ?", whereArgs: [filme.id]);
+    await movieDatabase.updateMovie(filme);
+    notifyListeners();
   }
 
-  Future<Filme?> getFilme(int id) async {
-    movieDatabase = await DB().getDatabase;
+  Future<dynamic> getFilmeById(int id) async {
+    movieDatabase = DB.instanceDatabase;
 
-    List<Map> maps = await movieDatabase.query(Filme.kMOVIETABLE,
-        columns: [
-          Filme.kIDMOVIECOLUMN,
-          Filme.kTITLEMOVIECOLUMN,
-          Filme.kDIRECTORMOVIECOLUMN,
-          Filme.kRELEASEYEARMOVIECOLUMN,
-          Filme.kGENREMOVIECOLUMN,
-          Filme.kRATINGMOVIECOLUMN
-        ],
-        where: "${Filme.kIDMOVIECOLUMN} = ?",
-        whereArgs: [id]);
+    Filme? filme = await movieDatabase.getMovieById(id);
 
-    if (maps.isNotEmpty) {
-      return Filme.fromMap(maps.first);
-    }
-    return null;
+    return filme;
+  }
+
+  Future<int> deleteMovie(int id) async {
+    movieDatabase = DB.instanceDatabase;
+    late final int numberRowsAffected;
+    numberRowsAffected = await movieDatabase.delete(id);
+    notifyListeners();
+    return numberRowsAffected;
   }
 }

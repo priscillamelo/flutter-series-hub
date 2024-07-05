@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             style: ButtonStyle(
                               alignment: AlignmentDirectional.topEnd,
-                              textStyle: MaterialStateProperty.all(
+                              textStyle: WidgetStateProperty.all(
                                 const TextStyle(
                                   decoration: TextDecoration.underline,
                                   letterSpacing: 2,
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   style: const ButtonStyle(
-                    padding: MaterialStatePropertyAll(
+                    padding: WidgetStatePropertyAll(
                       EdgeInsets.only(
                         top: 16,
                         right: 52,
@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.popAndPushNamed(context, '/criarConta');
                   },
                   style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
+                    textStyle: WidgetStateProperty.all(
                       const TextStyle(
                         decoration: TextDecoration.underline,
                         letterSpacing: 2,
