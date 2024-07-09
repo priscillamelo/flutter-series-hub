@@ -14,14 +14,14 @@ class Filme {
 
   int id = 0;
   String titulo = "";
-  int anoLancamento = 0;
+  late int anoLancamento;
   String? diretor;
   String? genero;
   String? elenco;
   String? streaming;
   String? sinopse;
   String? poster;
-  double? avaliacao;
+  double avaliacao = 0;
   String? categoriaPertencente = "";
 
   Filme(this.titulo, this.anoLancamento, {required this.categoriaPertencente});

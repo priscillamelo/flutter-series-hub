@@ -9,6 +9,7 @@ import '../../models/abas/assistir.dart';
 // ROUTES
 import '../../routes/pages_routes.dart';
 // WIDGET
+import 'customs/colors.dart';
 import 'floating_button_widget.dart';
 import 'home_no_data_widget.dart';
 
@@ -32,14 +33,45 @@ class _AssistirTabState extends State<AssistirTab> {
           return const HomeNoDataWidget();
         } else {
           return Scaffold(
-            body: ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return ItemMovieWidget(
-                    filme: snapshot.data![index],
-                    nameTab: Assistir.aba,
-                  );
-                }),
+            body: Column(
+              children: [
+                SearchBar(
+                  leading: const Icon(Icons.search),
+                  hintText: "Pesquisar filme ou série",
+                  trailing: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {});
+                      },
+                      child: const Text("Buscar"),
+                    ),
+                  ],
+                  backgroundColor: WidgetStateProperty.all(
+                    Color(ColorsTheme.bgInput.value),
+                  ),
+                  shape: WidgetStateProperty.all(
+                    const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
+                  ),
+                  padding: WidgetStateProperty.all(
+                    const EdgeInsets.all(8),
+                  ),
+                  textInputAction: TextInputAction.search,
+                  keyboardType: TextInputType.text,
+                ),
+                ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return ItemMovieWidget(
+                        filme: snapshot.data![index],
+                        nameTab: Assistir.aba,
+                      );
+                    }),
+              ],
+            ),
             floatingActionButton: const FloatingButtonWidgetSmall(
               heroTagName: 'route-add-2',
               routeName: PagesRoutes.kADD_MOVIE_SERIE,
