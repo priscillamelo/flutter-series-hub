@@ -38,32 +38,37 @@ class _AssistirTabState extends State<AssistirTab> {
           return Scaffold(
             body: Column(
               children: [
-                SearchBar(
-                  leading: const Icon(Icons.search),
-                  hintText: "Pesquisar filme ou série",
-                  trailing: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {});
-                      },
-                      child: const Text("Buscar"),
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+                  //width: MediaQuery.of(context).size.width / 2,
+                  child: SearchBar(
+                    leading: const Icon(Icons.search),
+                    hintText: "Pesquisar filme ou série",
+                    trailing: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        child: const Text("Buscar"),
+                      ),
+                    ],
+                    backgroundColor: WidgetStateProperty.all(
+                      Color(ColorsTheme.bgInput.value),
                     ),
-                  ],
-                  backgroundColor: WidgetStateProperty.all(
-                    Color(ColorsTheme.bgInput.value),
-                  ),
-                  shape: WidgetStateProperty.all(
-                    const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
+                    shape: WidgetStateProperty.all(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
                       ),
                     ),
+                    padding: WidgetStateProperty.all(
+                      const EdgeInsets.all(8),
+                    ),
+                    textInputAction: TextInputAction.search,
+                    keyboardType: TextInputType.text,
                   ),
-                  padding: WidgetStateProperty.all(
-                    const EdgeInsets.all(8),
-                  ),
-                  textInputAction: TextInputAction.search,
-                  keyboardType: TextInputType.text,
                 ),
                 ListView.builder(
                     shrinkWrap: true,

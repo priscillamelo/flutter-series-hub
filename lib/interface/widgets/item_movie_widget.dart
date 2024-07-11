@@ -39,22 +39,27 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
             final double availableHeight = constraints.maxHeight;
             final double desiredHeight = availableHeight / 1.5;
             return Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
               child: Row(
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset(
-                        filme.poster != null
-                            ? "${filme.poster}"
-                            : "assets/no_image.png",
-                        width: constraints.maxWidth / 4,
-                        height: desiredHeight,
-                        alignment: Alignment.centerLeft,
-                        semanticLabel: "Poster",
+                      Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        width: constraints.maxWidth / 3,
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          filme.poster != null
+                              ? "${filme.poster}"
+                              : "assets/no_image.png",
+                          //width: constraints.maxWidth / 4,
+                          height: desiredHeight,
+                          semanticLabel: "Poster",
+                          fit: BoxFit.fill,
+                          alignment: Alignment.center,
+                        ),
                       ),
                       /* Container(
                         margin: const EdgeInsets.only(right: 8),
