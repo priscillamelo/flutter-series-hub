@@ -38,7 +38,9 @@ class _ConcluidoTabState extends State<ConcluidoTab> {
     Assistidos().setListMovies = listMovies;
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       if (Assistidos().getListMovies.isEmpty) {
-        return const HomeNoDataWidget();
+        return const HomeNoDataWidget(
+          nameTab: Assistidos.aba,
+        );
       } else {
         return Scaffold(
           body: ListView.builder(

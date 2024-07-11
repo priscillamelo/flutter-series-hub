@@ -10,6 +10,7 @@ import '../../models/filme.dart';
 // WIDGET
 import 'customs/colors.dart';
 import 'rating_bar_widget.dart';
+import 'rich_text_widget.dart';
 
 class ItemMovieWidget extends StatefulWidget {
   final Filme filme;
@@ -32,8 +33,7 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
         color: ColorsTheme.bgCardDetails,
         elevation: 4,
         margin: const EdgeInsets.all(16),
-        child: Container(
-          color: Colors.amber,
+        child: SizedBox(
           height: MediaQuery.of(context).size.height / 6,
           child: LayoutBuilder(builder: (context, constraints) {
             final double availableHeight = constraints.maxHeight;
@@ -44,29 +44,64 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
               child: Row(
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Center(
-                        child: SizedBox(
-                          width: constraints.maxWidth / 4,
-                          height: desiredHeight,
-                          child: filme.poster == null
-                              ? Image.asset(
-                                  'assets/no_image.png',
-                                  fit: BoxFit.cover,
-                                )
-                              : Image.asset("${filme.poster}"),
-                        ),
+                      Image.asset(
+                        filme.poster != null
+                            ? "${filme.poster}"
+                            : "assets/no_image.png",
+                        width: constraints.maxWidth / 4,
+                        height: desiredHeight,
+                        alignment: Alignment.centerLeft,
+                        semanticLabel: "Poster",
                       ),
+                      /* Container(
+                        margin: const EdgeInsets.only(right: 8),
+                        width: constraints.maxWidth / 4,
+                        height: desiredHeight,
+                        child: filme.poster == null
+                            ? Image.asset(
+                                'assets/no_image.png',
+                              )
+                            : Image.asset("${filme.poster}"),
+                      ), */
                       RatingBarWidget(ratingMovie: filme.avaliacao),
                     ],
                   ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      RichTextWidget(
+                        propertie: "Título",
+                        propertieValue: filme.titulo,
+                      ),
+                      RichTextWidget(
+                        propertie: "Gênero",
+                        propertieValue: filme.genero,
+                      ),
+                      RichTextWidget(
+                        propertie: "Lançamento",
+                        propertieValue: filme.anoLancamento.toString(),
+                      ),
+                      RichTextWidget(
+                        propertie: "Atores Principais",
+                        propertieValue: filme.elenco,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 8),
+                    width: constraints.maxWidth / 4.5,
+                    height: desiredHeight * 1.3,
+                    color: ColorsTheme.bgTabSelected,
+                    child: RichTextWidget(
+                      propertie: "Sinopse",
+                      propertieValue: filme.sinopse,
+                    ),
+                  ),
                 ],
-                Column(
-                  
-                  children[
-
-                  ]
-                )
               ),
             );
           }),

@@ -61,18 +61,15 @@ class DB {
     return filmeMaps.isNotEmpty ? Filme.fromMap(filmeMaps.first) : null;
   }
 
-  Future<void> updateMovie(Filme filme) async {
+  Future<int> updateMovie(Filme filme) async {
     final Database db = await getDatabase;
     late final int numberRowsAffected;
-
-    print("print no banco: ${filme.titulo}");
-    print("print no banco: ${filme.toMap()}");
 
     numberRowsAffected = await db.update(Filme.kMOVIETABLE, filme.toMap(),
         where: '${Filme.kIDMOVIECOLUMN} = ?',
         whereArgs: [filme.id],
         conflictAlgorithm: ConflictAlgorithm.replace);
-    print("$numberRowsAffected");
+    return numberRowsAffected;
   }
 
   Future<int> delete(int id) async {

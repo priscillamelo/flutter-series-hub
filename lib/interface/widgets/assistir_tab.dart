@@ -29,8 +29,11 @@ class _AssistirTabState extends State<AssistirTab> {
     return FutureBuilder(
       future: filmeRepository.getAllMovies(),
       builder: (context, snapshot) {
+        //print(snapshot.data!.isEmpty.toString());
         if (snapshot.data?.isEmpty ?? true) {
-          return const HomeNoDataWidget();
+          return const HomeNoDataWidget(
+            nameTab: Assistir.aba,
+          );
         } else {
           return Scaffold(
             body: Column(
@@ -63,6 +66,7 @@ class _AssistirTabState extends State<AssistirTab> {
                   keyboardType: TextInputType.text,
                 ),
                 ListView.builder(
+                    shrinkWrap: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       return ItemMovieWidget(
@@ -83,6 +87,34 @@ class _AssistirTabState extends State<AssistirTab> {
     );
   }
 }
+
+/* SearchBar(
+                  leading: const Icon(Icons.search),
+                  hintText: "Pesquisar filme ou série",
+                  trailing: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {});
+                      },
+                      child: const Text("Buscar"),
+                    ),
+                  ],
+                  backgroundColor: WidgetStateProperty.all(
+                    Color(ColorsTheme.bgInput.value),
+                  ),
+                  shape: WidgetStateProperty.all(
+                    const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
+                  ),
+                  padding: WidgetStateProperty.all(
+                    const EdgeInsets.all(8),
+                  ),
+                  textInputAction: TextInputAction.search,
+                  keyboardType: TextInputType.text,
+                ), */
 
 /* List<Filme> listFilmes = [];
 

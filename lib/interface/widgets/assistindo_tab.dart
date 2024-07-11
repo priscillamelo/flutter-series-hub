@@ -38,7 +38,9 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
     Assistindo().setListSeries = listSeries; */
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       return Assistindo().getListSeries.isEmpty
-          ? const HomeNoDataWidget()
+          ? const HomeNoDataWidget(
+              nameTab: Assistindo.aba,
+            )
           : Scaffold(
               body: ListView.builder(
                 itemCount: Assistindo().getListSeries.length,

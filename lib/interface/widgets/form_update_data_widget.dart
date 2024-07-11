@@ -117,21 +117,9 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       Filme filme = snapshot.data;
-                                      debugPrint(filme.id.toString());
-                                      debugPrint(filme.titulo);
 
-                                      filme = Filme(
-                                        tituloController.text,
-                                        int.parse(anoLancamentoController.text),
-                                        categoriaPertencente:
-                                            widget.categoriaPertencente,
-                                      );
+                                      filme.titulo = tituloController.text;
                                       filmeRepository.updateMovie(filme);
-
-                                      debugPrint(tituloController.text);
-
-                                      debugPrint(filme.titulo);
-
                                       /* //TODO: CRIAR COMPONENTE DE SNACKBAR
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(

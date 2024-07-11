@@ -33,11 +33,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           height: 80,
         ),
         centerTitle: true,
-        /* leading: const Icon(
-          Icons.account_circle,
-          size: 50,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.account_circle),
+          iconSize: 50,
         ),
-        leadingWidth: 100, */
+        leadingWidth: 100,
         toolbarHeight: 70,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -76,13 +77,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               splashBorderRadius: BorderRadius.circular(50),
               tabs: const [
                 Tab(
-                  text: 'Assistindo',
+                  text: 'Estou Assistindo',
                 ),
                 Tab(
-                  text: 'Assistir',
+                  text: 'Quero Assistir',
                 ),
                 Tab(
-                  text: 'Concluído',
+                  text: 'Já Finalizei',
                 )
               ],
             ),
