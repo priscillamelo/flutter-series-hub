@@ -15,10 +15,11 @@ class Serie {
   static const String kFINISHDATESERIECOLUMN = 'finishDateColumnSerie';
   static const String kTABNAMESERIECOLUMN = 'tabNameColumnSerie';
 
+  int id = 0;
   String titulo = "";
   int anoLancamento = 0;
   int? anoFinalizada;
-  int? temporadas;
+  int temporadas = 1;
   String? diretor;
   String? genero;
   String? elenco;
@@ -29,6 +30,27 @@ class Serie {
   DateTime? dataFinalizada;
   String? categoriaPertencente = "";
 
+  Serie(this.titulo, this.anoLancamento, {required this.categoriaPertencente});
+
 /*   var dataEspecifica = DateTime(2024, 4, 15);
   print("Data específica: $dataEspecifica"); */
+
+  Serie.fromMap(Map map) {
+    id = map[kIDSERIECOLUMN];
+    titulo = map[kTITLESERIECOLUMN];
+    diretor = map[kDIRECTORSERIECOLUMN];
+    anoLancamento = map[kRELEASEYEARSERIECOLUMN];
+    genero = map[kGENRESERIECOLUMN];
+    avaliacao = map[kRATINGSERIECOLUMN];
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      kTITLESERIECOLUMN: titulo,
+      kDIRECTORSERIECOLUMN: diretor,
+      kRELEASEYEARSERIECOLUMN: anoLancamento,
+      kGENRESERIECOLUMN: genero,
+      kRATINGSERIECOLUMN: avaliacao,
+    };
+  }
 }

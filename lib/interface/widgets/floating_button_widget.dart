@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/alert_dialog.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
+import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
+import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 
 class FloatingButtonWidgetLarge extends StatelessWidget {
   final String routeName;
@@ -18,7 +21,19 @@ class FloatingButtonWidgetLarge extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        Navigator.pushNamed(context, routeName.toString(), arguments: nameTab);
+        if (nameTab == Assistindo.aba) {
+          Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+              arguments: {'nameTab': nameTab, 'typeData': 'Série'});
+        } else {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialogWidget(
+                nameTab: nameTab,
+              );
+            },
+          );
+        }
       },
       child: const Icon(
         Icons.add,
@@ -46,7 +61,19 @@ class FloatingButtonWidgetSmall extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        Navigator.pushNamed(context, routeName.toString(), arguments: nameTab);
+        if (nameTab == Assistindo.aba) {
+          Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+              arguments: {'nameTab': nameTab, 'typeData': 'Série'});
+        } else {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialogWidget(
+                nameTab: nameTab,
+              );
+            },
+          );
+        }
       },
       child: const Icon(
         Icons.add,

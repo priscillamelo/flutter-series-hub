@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'customs/colors.dart';
 
 class RatingBarWidget extends StatelessWidget {
-  final double ratingMovie;
+  final double? ratingMovie;
   const RatingBarWidget({super.key, required this.ratingMovie});
 
   @override
@@ -22,7 +22,7 @@ class RatingBarWidget extends StatelessWidget {
         color: ColorsTheme.bgTabSelected,
       ),
       onRatingUpdate: (rating) {
-        rating = ratingMovie;
+        rating = ratingMovie ?? 0;
         debugPrint(rating.toString());
       },
     );

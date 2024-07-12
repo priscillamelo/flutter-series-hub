@@ -40,6 +40,7 @@ class DadosFormFieldWidget extends StatelessWidget {
         return "O campo não pode ser vazio";
       }
       if (keyboardType == TextInputType.number &&
+          label != 'Temporadas' &&
           int.parse(controller.value.text) < 1870) {
         return "Ano de lançamento inválido!";
       }

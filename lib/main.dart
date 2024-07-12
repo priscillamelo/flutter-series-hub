@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 // FIREBASE
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 // PROVIDER
 import 'package:provider/provider.dart';
-import 'provider/movie_provider.dart';
 // ROUTES
 import 'routes/pages_routes.dart';
 import 'routes/user_route.dart';
@@ -27,11 +27,11 @@ void main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<MovieProvider>(
-        create: (_) => MovieProvider(),
-      ),
       ChangeNotifierProvider(
         create: (_) => FilmeRepository(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => SerieRepository(),
       ),
     ],
     child: const MyApp(),

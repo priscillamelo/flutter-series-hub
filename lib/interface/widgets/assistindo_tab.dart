@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 
-// PROVIDER
-import 'package:provider/provider.dart';
-import '../../provider/movie_provider.dart';
 // MODEL
 import '../../models/abas/assistindo.dart';
 // ROUTES
@@ -20,88 +19,71 @@ class AssistindoTabWidget extends StatefulWidget {
 }
 
 class _AssistindoTabMainState extends State<AssistindoTabWidget> {
-  //late Future<List<Filme>> _listRegistrosAssistindo;
-  late MovieProvider movieProvider;
-
   @override
   Widget build(BuildContext context) {
-    movieProvider = Provider.of<MovieProvider>(context);
+    final serieRepository = SerieRepository();
 
-/*     List<Serie> listSeries = [];
-
-    // TODO: MUDAR O PROVIDER PARA DE SERIES
-    for (var serie in movieProvider.getAllSeries) {
-      if (serie.categoriaPertencente == Assistindo.aba) {
-        listSeries.add(serie);
-      }
-    }
-    Assistindo().setListSeries = listSeries; */
-    return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
-      return Assistindo().getListSeries.isEmpty
-          ? const HomeNoDataWidget(
+    return FutureBuilder(
+      future: serieRepository.getAllSeries(),
+      builder: (context, snapshot) {
+        if (snapshot.data?.isEmpty ?? true) {
+          return const HomeNoDataWidget(
+            nameTab: Assistindo.aba,
+          );
+        } else {
+          return Scaffold(
+            body: Column(
+              children: [
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+                  child: SearchBar(
+                    leading: const Icon(Icons.search),
+                    hintText: "Pesquisar série",
+                    trailing: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        child: const Text("Buscar"),
+                      ),
+                    ],
+                    backgroundColor: WidgetStateProperty.all(
+                      Color(ColorsTheme.bgInput.value),
+                    ),
+                    shape: WidgetStateProperty.all(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                    ),
+                    padding: WidgetStateProperty.all(
+                      const EdgeInsets.all(8),
+                    ),
+                    textInputAction: TextInputAction.search,
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return ItemSerieWidget(
+                        serie: snapshot.data![index],
+                        nameTab: Assistindo.aba,
+                      );
+                    }),
+              ],
+            ),
+            floatingActionButton: const FloatingButtonWidgetSmall(
+              heroTagName: 'route-add-2',
+              routeName: PagesRoutes.kADD_MOVIE_SERIE,
               nameTab: Assistindo.aba,
-            )
-          : Scaffold(
-              body: ListView.builder(
-                itemCount: Assistindo().getListSeries.length,
-                itemBuilder: (context, index) {
-                  return ItemSerieWidget(
-                    serie: Assistindo().getListSeries.elementAt(index),
-                  );
-                },
-              ),
-              floatingActionButton: const FloatingButtonWidgetSmall(
-                heroTagName: '',
-                routeName: PagesRoutes.kADD_MOVIE_SERIE,
-                nameTab: Assistindo.aba,
-              ),
-            );
-    });
-    /*FutureBuilder(
-        future: listMovies,
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('Erro ao carregar seus registros'),
-            );
-          } else if (snapshot.data != null && snapshot.data!.isNotEmpty) {
-            return Scaffold(
-              body: ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return RegistroItem(
-                    filme: snapshot.data![index],
-                  );
-                },
-              ),
-              floatingActionButton: FloatingActionButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      PagesRoutes.kADD_MOVIE_SERIE,
-                    );
-                  },
-                  child: const Icon(Icons.add)),
-            );
-          } else {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // TODO: CRIAR COMPONENTE DE FLOATING BUTTON
-                  FloatingActionButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          PagesRoutes.kADD_MOVIE_SERIE,
-                        );
-                      },
-                      child: const Icon(Icons.add)),
-                  const Text("Inicie seus registros!"),
-                ],
-              ),
-            );
-          }
-        });*/
+            ),
+          );
+        }
+      },
+    );
   }
 }

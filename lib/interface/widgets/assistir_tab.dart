@@ -29,7 +29,6 @@ class _AssistirTabState extends State<AssistirTab> {
     return FutureBuilder(
       future: filmeRepository.getAllMovies(),
       builder: (context, snapshot) {
-        //print(snapshot.data!.isEmpty.toString());
         if (snapshot.data?.isEmpty ?? true) {
           return const HomeNoDataWidget(
             nameTab: Assistir.aba,
@@ -41,7 +40,6 @@ class _AssistirTabState extends State<AssistirTab> {
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
-                  //width: MediaQuery.of(context).size.width / 2,
                   child: SearchBar(
                     leading: const Icon(Icons.search),
                     hintText: "Pesquisar filme ou série",
@@ -92,37 +90,3 @@ class _AssistirTabState extends State<AssistirTab> {
     );
   }
 }
-
-/* SearchBar(
-                  leading: const Icon(Icons.search),
-                  hintText: "Pesquisar filme ou série",
-                  trailing: [
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {});
-                      },
-                      child: const Text("Buscar"),
-                    ),
-                  ],
-                  backgroundColor: WidgetStateProperty.all(
-                    Color(ColorsTheme.bgInput.value),
-                  ),
-                  shape: WidgetStateProperty.all(
-                    const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
-                      ),
-                    ),
-                  ),
-                  padding: WidgetStateProperty.all(
-                    const EdgeInsets.all(8),
-                  ),
-                  textInputAction: TextInputAction.search,
-                  keyboardType: TextInputType.text,
-                ), */
-
-/* List<Filme> listFilmes = [];
-
-      for (Map i in listMap) {
-        listFilmes.add(Filme.fromMap(i));
-      } */

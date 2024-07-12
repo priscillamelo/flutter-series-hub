@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/database/database.dart';
 import 'package:flutter_journal_moviesandseries/models/filme.dart';
+
+import '../../database/filme_helper.dart';
 
 class FilmeRepository extends ChangeNotifier {
   String get sqlTableMovie => '''
@@ -19,7 +20,7 @@ class FilmeRepository extends ChangeNotifier {
   )
 ''';
 
-  late DB movieDatabase;
+  FilmeHelper movieHelper = FilmeHelper();
   FilmeRepository() {
     _initRepository();
   }
@@ -29,9 +30,7 @@ class FilmeRepository extends ChangeNotifier {
   }
 
   Future<List<Filme>> getAllMovies() async {
-    movieDatabase = DB.instanceDatabase;
-
-    List listMapMovies = await movieDatabase.getAllMovies();
+    List listMapMovies = await movieHelper.getAllMovies();
     List<Filme> listMovies = [];
 
     for (Map i in listMapMovies) {
@@ -43,30 +42,23 @@ class FilmeRepository extends ChangeNotifier {
   }
 
   Future<void> addFilme(Filme filme) async {
-    movieDatabase = DB.instanceDatabase;
-    movieDatabase.addFilme(filme);
+    movieHelper.addFilme(filme);
   }
 
   Future<void> updateMovie(Filme filme) async {
-    debugPrint("debug no banco: ${filme.titulo}");
-    movieDatabase = DB.instanceDatabase;
-
-    await movieDatabase.updateMovie(filme);
+    await movieHelper.updateMovie(filme);
     notifyListeners();
   }
 
   Future<dynamic> getFilmeById(int id) async {
-    movieDatabase = DB.instanceDatabase;
-
-    Filme? filme = await movieDatabase.getMovieById(id);
+    Filme? filme = await movieHelper.getMovieById(id);
 
     return filme;
   }
 
   Future<int> deleteMovie(int id) async {
-    movieDatabase = DB.instanceDatabase;
     late final int numberRowsAffected;
-    numberRowsAffected = await movieDatabase.delete(id);
+    numberRowsAffected = await movieHelper.delete(id);
     notifyListeners();
     return numberRowsAffected;
   }
