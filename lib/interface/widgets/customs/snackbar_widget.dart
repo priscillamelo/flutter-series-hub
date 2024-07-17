@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-showSnackBar(
-    {required BuildContext context,
-    required String text,
-    bool isError = true}) {
+showSnackBar({
+  required BuildContext context,
+  required String text,
+  bool isError = true,
+}) {
   SnackBar snackBar = SnackBar(
     content: Text(text),
     backgroundColor: (isError) ? Colors.red : Colors.green,
@@ -13,12 +14,12 @@ showSnackBar(
       ),
     ),
     showCloseIcon: true,
-    /* action: SnackBarAction(
+    action: SnackBarAction(
         label: "Ok",
         textColor: Colors.white,
         onPressed: () {
           ScaffoldMessenger.of(context).removeCurrentSnackBar();
-        }), */
+        }),
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

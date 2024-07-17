@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/models/filme.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/filme_repository.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 
 class AlertDialogWidgetCustom extends StatelessWidget {
-  final Filme filme;
-  const AlertDialogWidgetCustom({super.key, required this.filme});
+  final dynamic data;
+  final String typeData;
+  const AlertDialogWidgetCustom(
+      {super.key, required this.data, required this.typeData});
 
   @override
   Widget build(BuildContext context) {
     FilmeRepository filmeRepository = FilmeRepository();
+    SerieRepository serieRepository = SerieRepository();
     return AlertDialog(
-      title: Text("Deseja Excluir ${filme.titulo}?"),
+      title: Text("Deseja Excluir ${data.titulo}?"),
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,16 +23,25 @@ class AlertDialogWidgetCustom extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(Colors.red.shade600),
-              ),
               child: const Text("Não"),
             ),
             ElevatedButton(
+              style: ButtonStyle(
+                textStyle: const WidgetStatePropertyAll(
+                  TextStyle(color: ColorsTheme.bgInput),
+                ),
+                backgroundColor: WidgetStatePropertyAll(Colors.red.shade600),
+              ),
               onPressed: () async {
                 final int numberRowsAffected;
-                numberRowsAffected =
-                    await filmeRepository.deleteMovie(filme.id);
+                if (typeData == "filme") {
+                  numberRowsAffected =
+                      await filmeRepository.deleteMovie(data.id);
+                } else {
+                  numberRowsAffected =
+                      await serieRepository.deleteSerie(data.id);
+                }
+
                 if (!context.mounted) return;
                 if (numberRowsAffected != 0) {
                   ScaffoldMessenger.of(context).showSnackBar(

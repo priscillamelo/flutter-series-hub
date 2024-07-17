@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/alert_dialog_widget_custom.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rating_bar_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rich_text_widget.dart';
+import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 
 // MODEL
 import '../../models/serie.dart';
@@ -54,7 +56,10 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                           alignment: Alignment.center,
                         ),
                       ),
-                      RatingBarWidget(ratingMovie: serie.avaliacao),
+                      RatingBarWidget(
+                        data: serie,
+                        typeData: "serie",
+                      ),
                     ],
                   ),
                   Column(
@@ -95,23 +100,19 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
           }),
         ),
       ),
-      /* onTap: () {
-        print(pokemon.nome);
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => TelaDetalhesPokemon(id: pokemon.id, dao: dao),
-          ),
-        );
-      }, */
+      onTap: () {
+        Navigator.pushNamed(context, PagesRoutes.kUPDATE_MOVIE_SERIE,
+            arguments: widget.serie.id.toString());
+      },
       onLongPress: () {
-        //movieProvider.removeMovie(filme);
-        //Provider.of<MovieProvider>(context, listen: false).removeMovie(serie);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-                "${widget.serie.titulo} lançado em ${widget.serie.anoLancamento} excluído com sucesso"),
-          ),
-        );
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialogWidgetCustom(
+                data: serie,
+                typeData: "serie",
+              );
+            });
       },
     );
   }

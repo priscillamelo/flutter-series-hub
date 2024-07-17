@@ -109,6 +109,7 @@ class _FormMovieWidget extends State<FormMovieWidget> {
                     categoriaPertencente: widget.categoriaPertencente,
                   );
                   filmeRepository.addFilme(filme);
+                  debugPrint(filme.categoriaPertencente);
 
                   //movieProvider.saveMovie(filme);
                   //TODO: CRIAR COMPONENTE DE SNACKBAR

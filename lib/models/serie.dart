@@ -17,7 +17,7 @@ class Serie {
 
   int id = 0;
   String titulo = "";
-  int anoLancamento = 0;
+  late int anoLancamento;
   int? anoFinalizada;
   int temporadas = 1;
   String? diretor;
@@ -26,9 +26,9 @@ class Serie {
   String? streaming;
   String? sinopse;
   String? poster;
-  double? avaliacao;
+  double avaliacao = 0;
   DateTime? dataFinalizada;
-  String? categoriaPertencente = "";
+  late String categoriaPertencente;
 
   Serie(this.titulo, this.anoLancamento, {required this.categoriaPertencente});
 
@@ -41,7 +41,8 @@ class Serie {
     diretor = map[kDIRECTORSERIECOLUMN];
     anoLancamento = map[kRELEASEYEARSERIECOLUMN];
     genero = map[kGENRESERIECOLUMN];
-    avaliacao = map[kRATINGSERIECOLUMN];
+    avaliacao = map[kRATINGSERIECOLUMN] ?? 0;
+    categoriaPertencente = map[kTABNAMESERIECOLUMN] ?? "";
   }
 
   Map<String, dynamic> toMap() {
@@ -51,6 +52,7 @@ class Serie {
       kRELEASEYEARSERIECOLUMN: anoLancamento,
       kGENRESERIECOLUMN: genero,
       kRATINGSERIECOLUMN: avaliacao,
+      kTABNAMESERIECOLUMN: categoriaPertencente,
     };
   }
 }

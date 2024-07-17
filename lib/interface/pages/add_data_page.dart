@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/form_serie_widget.dart';
 
-import '../widgets/form_movie_widget.dart';
-
 class AddDataPage extends StatelessWidget {
   const AddDataPage({super.key});
 
@@ -11,12 +9,10 @@ class AddDataPage extends StatelessWidget {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
     final nameTab = arguments['nameTab'];
-    final typeData = arguments['typeData'];
+    //final typeData = arguments['typeData'];
 
     return Scaffold(
-      body: typeData == 'Filme'
-          ? FormMovieWidget(categoriaPertencente: nameTab)
-          : FormSerieWidget(categoriaPertencente: nameTab),
+      body: FormSerieWidget(categoriaPertencente: nameTab),
     );
   }
 }

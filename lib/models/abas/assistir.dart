@@ -1,10 +1,7 @@
-import '../serie.dart';
-import '../filme.dart';
 
 class Assistir {
   static const String aba = "Assistir";
-  late List<Serie> listSeries = [];
-  late List<Filme> listMovies = [];
+  late List<dynamic> listDatas = [];
 
   static final Assistir _assistirSingleton = Assistir._internal();
 
@@ -13,12 +10,13 @@ class Assistir {
   }
 
   Assistir._internal();
+  
 
-  List<Filme> get getListMovies {
+ /*  List<Filme> get getListMovies {
     return listMovies;
   }
 
   set setListMovies(List<Filme> listMovies) {
     this.listMovies = listMovies;
-  }
+  } */
 }

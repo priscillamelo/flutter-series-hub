@@ -48,11 +48,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Projetos Aplicados I',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorsTheme.bgTela,
-        textTheme: const TextTheme(),
-        buttonTheme: const ButtonThemeData(
-          buttonColor: ColorsTheme.bgInputDetails,
-          textTheme: ButtonTextTheme.normal,
-        ),
         colorScheme: ColorScheme.fromSeed(
             seedColor: ColorsTheme.bgTela, primary: ColorsTheme.bgTela),
         useMaterial3: true,

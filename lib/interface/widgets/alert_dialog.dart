@@ -47,6 +47,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    //debugPrint(widget.nameTab);
                     Navigator.popAndPushNamed(
                         context, PagesRoutes.kADD_MOVIE_SERIE, arguments: {
                       'nameTab': widget.nameTab,

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/alert_dialog_widget_custom.dart';
-
-// MODEL
-import '../../models/filme.dart';
-// ROUTE
-import '../../routes/pages_routes.dart';
+import 'package:flutter_journal_moviesandseries/models/filme.dart';
+import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 // WIDGET
 import 'customs/colors.dart';
 import 'rating_bar_widget.dart';
@@ -35,6 +32,7 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
           child: LayoutBuilder(builder: (context, constraints) {
             final double availableHeight = constraints.maxHeight;
             final double desiredHeight = availableHeight / 1.5;
+
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
               child: Row(
@@ -58,7 +56,10 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
                           alignment: Alignment.center,
                         ),
                       ),
-                      RatingBarWidget(ratingMovie: filme.avaliacao),
+                      RatingBarWidget(
+                        data: filme,
+                        typeData: "filme",
+                      ),
                     ],
                   ),
                   Column(
@@ -96,6 +97,7 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
                 ],
               ),
             );
+            // ignore: dead_code
           }),
         ),
       ),
@@ -107,7 +109,10 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
         showDialog(
             context: context,
             builder: (context) {
-              return AlertDialogWidgetCustom(filme: filme);
+              return AlertDialogWidgetCustom(
+                data: filme,
+                typeData: "filme",
+              );
             });
       },
     );

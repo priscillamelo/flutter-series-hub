@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
+import 'package:flutter_journal_moviesandseries/models/serie.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 
 // MODEL
@@ -22,6 +23,7 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
   @override
   Widget build(BuildContext context) {
     final serieRepository = SerieRepository();
+    final List<Serie> listSeries = [];
 
     return FutureBuilder(
       future: serieRepository.getAllSeries(),
@@ -31,57 +33,74 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
             nameTab: Assistindo.aba,
           );
         } else {
-          return Scaffold(
-            body: Column(
-              children: [
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
-                  child: SearchBar(
-                    leading: const Icon(Icons.search),
-                    hintText: "Pesquisar série",
-                    trailing: [
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        child: const Text("Buscar"),
+          for (int i = 0; i < snapshot.data!.length; i++) {
+            //debugPrint(snapshot.data![i].categoriaPertencente);
+            //debugPrint(snapshot.data![i].titulo);
+            //debugPrint(
+            //  (snapshot.data![i].categoriaPertencente?.isEmpty).toString());
+            if (snapshot.data![i].categoriaPertencente == Assistindo.aba) {
+              listSeries.add(snapshot.data![i]);
+            }
+          }
+          if (listSeries.isEmpty) {
+            return const HomeNoDataWidget(
+              nameTab: Assistindo.aba,
+            );
+          } else {
+            return Scaffold(
+              body: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 64, vertical: 16),
+                    child: SearchBar(
+                      leading: const Icon(Icons.search),
+                      hintText: "Pesquisar série",
+                      trailing: [
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {});
+                          },
+                          child: const Text("Buscar"),
+                        ),
+                      ],
+                      backgroundColor: WidgetStateProperty.all(
+                        Color(ColorsTheme.bgInput.value),
                       ),
-                    ],
-                    backgroundColor: WidgetStateProperty.all(
-                      Color(ColorsTheme.bgInput.value),
-                    ),
-                    shape: WidgetStateProperty.all(
-                      const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(50),
+                      shape: WidgetStateProperty.all(
+                        const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50),
+                          ),
                         ),
                       ),
+                      padding: WidgetStateProperty.all(
+                        const EdgeInsets.all(8),
+                      ),
+                      textInputAction: TextInputAction.search,
+                      keyboardType: TextInputType.text,
                     ),
-                    padding: WidgetStateProperty.all(
-                      const EdgeInsets.all(8),
-                    ),
-                    textInputAction: TextInputAction.search,
-                    keyboardType: TextInputType.text,
                   ),
-                ),
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return ItemSerieWidget(
-                        serie: snapshot.data![index],
-                        nameTab: Assistindo.aba,
-                      );
-                    }),
-              ],
-            ),
-            floatingActionButton: const FloatingButtonWidgetSmall(
-              heroTagName: 'route-add-2',
-              routeName: PagesRoutes.kADD_MOVIE_SERIE,
-              nameTab: Assistindo.aba,
-            ),
-          );
+                  Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: listSeries.length,
+                        itemBuilder: (context, index) {
+                          return ItemSerieWidget(
+                            serie: listSeries[index],
+                            nameTab: Assistindo.aba,
+                          );
+                        }),
+                  ),
+                ],
+              ),
+              floatingActionButton: const FloatingButtonWidgetSmall(
+                heroTagName: 'route-add-2',
+                routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                nameTab: Assistindo.aba,
+              ),
+            );
+          }
         }
       },
     );

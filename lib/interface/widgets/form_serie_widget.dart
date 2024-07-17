@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/snackbar_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/text_form_dados_widget.dart';
 import 'package:flutter_journal_moviesandseries/models/serie.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
@@ -25,7 +26,6 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String tabName = widget.categoriaPertencente;
     serieRepository = Provider.of<SerieRepository>(context);
     return Scaffold(
       appBar: AppBar(),
@@ -100,15 +100,20 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
                     int.parse(temporadasController.text),
                     categoriaPertencente: widget.categoriaPertencente,
                   );
+                  debugPrint(serie.categoriaPertencente);
                   serieRepository.addSerie(serie);
 
-                  //movieProvider.saveMovie(filme);
                   //TODO: CRIAR COMPONENTE DE SNACKBAR
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  showSnackBar(
+                      context: context,
+                      text: "${serie.titulo} adicionado com sucesso",
+                      isError: false);
+                  /* ScaffoldMessenger.of(context).showSnackBar(
+
                     SnackBar(
                       content: Text("${serie.titulo} adicionado no banco"),
                     ),
-                  );
+                  ); */
                   Navigator.pop(context);
                 }
               },
