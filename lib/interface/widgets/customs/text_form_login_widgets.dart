@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
 
 class LoginFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -18,20 +17,11 @@ class LoginFormFieldWidget extends StatelessWidget {
       keyboardType: keyboardType,
       validator: _validatorField,
       obscureText: label.toLowerCase().contains('senha') ? true : false,
-      style: const TextStyle(fontSize: 20),
       decoration: InputDecoration(
-        filled: true,
-        fillColor: ColorsTheme.bgInput,
-        contentPadding: const EdgeInsets.all(20),
-        labelText: label,
+        hintText: label,
         helperText: label.toLowerCase().contains('senha')
             ? "Mínimo 6 caractereres"
             : null,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50),
-          ),
-        ),
       ),
     );
   }

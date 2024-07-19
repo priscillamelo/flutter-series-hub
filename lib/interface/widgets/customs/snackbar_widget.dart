@@ -15,7 +15,7 @@ showSnackBar({
     ),
     showCloseIcon: true,
     action: SnackBarAction(
-        label: "Ok",
+        label: "Fechar",
         textColor: Colors.white,
         onPressed: () {
           ScaffoldMessenger.of(context).removeCurrentSnackBar();

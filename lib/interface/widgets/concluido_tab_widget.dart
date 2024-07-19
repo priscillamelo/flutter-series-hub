@@ -12,14 +12,14 @@ import '../../routes/pages_routes.dart';
 import 'floating_button_widget.dart';
 import 'home_no_data_widget.dart';
 
-class ConcluidoTab extends StatefulWidget {
-  const ConcluidoTab({super.key});
+class ConcluidoTabWidget extends StatefulWidget {
+  const ConcluidoTabWidget({super.key});
 
   @override
-  State<ConcluidoTab> createState() => _ConcluidoTabState();
+  State<ConcluidoTabWidget> createState() => _ConcluidoTabWidgetState();
 }
 
-class _ConcluidoTabState extends State<ConcluidoTab> {
+class _ConcluidoTabWidgetState extends State<ConcluidoTabWidget> {
   @override
   Widget build(BuildContext context) {
     final serieRepository = Provider.of<SerieRepository>(context);

@@ -8,7 +8,6 @@ import '../../models/filme.dart';
 // SERVICE
 import '../../services/repository/filme_repository.dart';
 // WIDGETS
-import 'customs/text_form_dados_widget.dart';
 
 class FormMovieWidget extends StatefulWidget {
   final String categoriaPertencente;
@@ -57,7 +56,7 @@ class _FormMovieWidget extends State<FormMovieWidget> {
                   child: Form(
                     key: _formKey,
                     child: Column(
-                      children: [
+                        /* children: [
                         DadosFormFieldWidget(
                           label: 'Título',
                           controller: tituloController,
@@ -95,8 +94,8 @@ class _FormMovieWidget extends State<FormMovieWidget> {
                         const SizedBox(
                           height: 16,
                         ),
-                      ],
-                    ),
+                      ], */
+                        ),
                   ),
                 ),
               ),

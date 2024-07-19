@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import './colors.dart';
 
 class DadosFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
-  final TextInputType? keyboardType;
+  final TextInputType keyboardType;
   final String label;
   const DadosFormFieldWidget({
     super.key,
     required this.controller,
-    this.keyboardType,
+    required this.keyboardType,
     required this.label,
   });
 
@@ -21,30 +20,29 @@ class DadosFormFieldWidget extends StatelessWidget {
       minLines: 1,
       maxLines: label == "Sinopse" ? 5 : 1,
       decoration: InputDecoration(
-        labelText: label,
-        filled: true,
-        fillColor: ColorsTheme.bgInput,
-        contentPadding: const EdgeInsets.all(20),
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(50),
-          ),
-        ),
+        hintText: label,
       ),
     );
   }
 
   String? _validatorField(String? value) {
-    if (label == "Título" || keyboardType == TextInputType.number) {
+    if (label == "Título") {
       if (value == null || value.isEmpty) {
         return "O campo não pode ser vazio";
       }
-      if (keyboardType == TextInputType.number &&
-          label != 'Temporadas' &&
-          int.parse(controller.value.text) < 1870) {
-        return "Ano de lançamento inválido!";
-      }
     }
+    /* if (keyboardType == TextInputType.number) {
+      if (!label.contains("Temporada") && (value == null || value.isEmpty)) {
+        return "O campo não pode ser vazio";
+      } else if (!label.contains("Temporada") &&
+          int.parse(controller.text) < 1870) {
+        return "Ano inválido!";
+      }
+    } else if (label.contains("Temporada") &&
+        (controller.text.isEmpty || value == null)) {
+      controller.text = "1";
+      return null;
+    } */
     return null;
   }
 }

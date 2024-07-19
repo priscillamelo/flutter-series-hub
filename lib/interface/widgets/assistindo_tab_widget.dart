@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/models/serie.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
+import 'package:provider/provider.dart';
 
 // MODEL
 import '../../models/abas/assistindo.dart';
@@ -16,13 +17,14 @@ class AssistindoTabWidget extends StatefulWidget {
   const AssistindoTabWidget({super.key});
 
   @override
-  State<AssistindoTabWidget> createState() => _AssistindoTabMainState();
+  State<AssistindoTabWidget> createState() => _AssistindoTabWidgetState();
 }
 
-class _AssistindoTabMainState extends State<AssistindoTabWidget> {
+class _AssistindoTabWidgetState extends State<AssistindoTabWidget> {
   @override
   Widget build(BuildContext context) {
-    final serieRepository = SerieRepository();
+    final serieRepository = Provider.of<SerieRepository>(context);
+
     final List<Serie> listSeries = [];
 
     return FutureBuilder(
@@ -34,10 +36,6 @@ class _AssistindoTabMainState extends State<AssistindoTabWidget> {
           );
         } else {
           for (int i = 0; i < snapshot.data!.length; i++) {
-            //debugPrint(snapshot.data![i].categoriaPertencente);
-            //debugPrint(snapshot.data![i].titulo);
-            //debugPrint(
-            //  (snapshot.data![i].categoriaPertencente?.isEmpty).toString());
             if (snapshot.data![i].categoriaPertencente == Assistindo.aba) {
               listSeries.add(snapshot.data![i]);
             }

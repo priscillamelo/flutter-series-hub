@@ -14,14 +14,14 @@ import 'customs/colors.dart';
 import 'floating_button_widget.dart';
 import 'home_no_data_widget.dart';
 
-class AssistirTab extends StatefulWidget {
-  const AssistirTab({super.key});
+class AssistirTabWidget extends StatefulWidget {
+  const AssistirTabWidget({super.key});
 
   @override
-  State<AssistirTab> createState() => _AssistirTabState();
+  State<AssistirTabWidget> createState() => _AssistirTabWidgetMainState();
 }
 
-class _AssistirTabState extends State<AssistirTab> {
+class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
   @override
   Widget build(BuildContext context) {
     final serieRepository = Provider.of<SerieRepository>(context);

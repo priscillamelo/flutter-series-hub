@@ -1,23 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
-// FIREBASE
-import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/theme_data.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 // PROVIDER
 import 'package:provider/provider.dart';
-// ROUTES
-import 'routes/pages_routes.dart';
-import 'routes/user_route.dart';
-// SERVICE
-import 'services/repository/filme_repository.dart';
+
+// FIREBASE
+import 'firebase_options.dart';
 // INTERFACE - UI
 import 'interface/pages/add_data_page.dart';
 import 'interface/pages/criar_conta_page.dart';
 import 'interface/pages/home_page.dart';
 import 'interface/pages/login_page.dart';
 import 'interface/pages/update_data_page.dart';
-// VALUES
-import 'interface/widgets/customs/colors.dart';
+// ROUTES
+import 'routes/pages_routes.dart';
+import 'routes/user_route.dart';
+// SERVICE
+import 'services/repository/filme_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,12 +46,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Projetos Aplicados I',
-      theme: ThemeData(
-        scaffoldBackgroundColor: ColorsTheme.bgTela,
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: ColorsTheme.bgTela, primary: ColorsTheme.bgTela),
-        useMaterial3: true,
-      ),
+      theme: themeData,
       routes: {
         PagesRoutes.kLOGIN_PAGE: (context) => const LoginPage(),
         PagesRoutes.kCREATE_ACCOUNT: (context) => const CriarContaPage(),

@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/alert_dialog_widget_custom.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rating_bar_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rich_text_widget.dart';
-import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 
 // MODEL
 import '../../models/serie.dart';
@@ -45,16 +46,21 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                         margin: const EdgeInsets.only(right: 8),
                         width: constraints.maxWidth / 3,
                         alignment: Alignment.center,
-                        child: Image.asset(
-                          serie.poster != null
-                              ? "${serie.poster}"
-                              : "assets/no_image.png",
-                          //width: constraints.maxWidth / 4,
-                          height: desiredHeight,
-                          semanticLabel: "Poster",
-                          fit: BoxFit.fill,
-                          alignment: Alignment.center,
-                        ),
+                        child: serie.poster != null
+                            ? Image.file(
+                                File(serie.poster.toString()),
+                                height: desiredHeight,
+                                semanticLabel: "Poster",
+                                fit: BoxFit.fill,
+                                alignment: Alignment.center,
+                              )
+                            : Image.asset(
+                                "assets/no_image.png",
+                                height: desiredHeight,
+                                semanticLabel: "Poster",
+                                fit: BoxFit.fill,
+                                alignment: Alignment.center,
+                              ),
                       ),
                       RatingBarWidget(
                         data: serie,
@@ -78,13 +84,13 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                         propertie: "Temporadas",
                         propertieValue: serie.temporadas.toString(),
                       ),
-                      RichTextWidget(
+                      /* RichTextWidget(
                         propertie: "Atores Principais",
                         propertieValue: serie.elenco,
-                      ),
+                      ), */
                     ],
                   ),
-                  Container(
+                  /* Container(
                     margin: const EdgeInsets.only(left: 8),
                     width: constraints.maxWidth / 4.5,
                     height: desiredHeight * 1.3,
@@ -93,17 +99,18 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                       propertie: "Sinopse",
                       propertieValue: serie.sinopse,
                     ),
-                  ),
+                  ), */
                 ],
               ),
             );
           }),
         ),
       ),
+      /* TODO: CRIAR UMA PAGINA DE TODAS AS INFORMAÇÕES DA SÉRIE
       onTap: () {
         Navigator.pushNamed(context, PagesRoutes.kUPDATE_MOVIE_SERIE,
             arguments: widget.serie.id.toString());
-      },
+      }, */
       onLongPress: () {
         showDialog(
             context: context,

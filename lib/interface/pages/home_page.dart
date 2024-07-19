@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/assistindo_tab_widget.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/assistir_tab_widget.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/concluido_tab_widget.dart';
+import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 
 // WIDGET
-import '../widgets/assistindo_tab.dart';
-import '../widgets/assistir_tab.dart';
-import '../widgets/concluido_tab.dart';
 import '../widgets/customs/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController _tabController;
+  final serieRepository = SerieRepository();
 
   @override
   void initState() {
@@ -26,13 +28,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Image.asset(
           'assets/logo_app.png',
           fit: BoxFit.fill,
           height: 80,
+          semanticLabel: "Logo do App - My Journal Digital",
         ),
-        centerTitle: true,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.account_circle),
@@ -77,10 +78,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               splashBorderRadius: BorderRadius.circular(50),
               tabs: const [
                 Tab(
-                  text: 'Estou Assistindo',
+                  text: 'Quero Assistir',
                 ),
                 Tab(
-                  text: 'Quero Assistir',
+                  text: 'Estou Assistindo',
                 ),
                 Tab(
                   text: 'Já Finalizei',
@@ -91,9 +92,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
       body: TabBarView(controller: _tabController, children: const [
+        AssistirTabWidget(),
         AssistindoTabWidget(),
-        AssistirTab(),
-        ConcluidoTab()
+        ConcluidoTabWidget()
       ]),
     );
   }

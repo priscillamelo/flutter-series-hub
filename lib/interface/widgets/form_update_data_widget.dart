@@ -6,8 +6,6 @@ import '../../models/abas/tab_types.dart';
 import '../../models/filme.dart';
 // SERVICE
 import '../../services/repository/filme_repository.dart';
-// WIDGETS
-import 'customs/text_form_dados_widget.dart';
 
 class FormUpdateDataWidget extends StatefulWidget {
   final String categoriaPertencente;
@@ -76,7 +74,7 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                DadosFormFieldWidget(
+                                /* DadosFormFieldWidget(
                                   label: 'Título',
                                   controller: tituloController,
                                 ),
@@ -109,7 +107,7 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                                   label: 'Sinopse',
                                   controller: sinopseController,
                                   keyboardType: TextInputType.multiline,
-                                ),
+                                ), */
                                 const SizedBox(
                                   height: 16,
                                 ),

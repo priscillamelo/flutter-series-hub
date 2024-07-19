@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_moviesandseries/interface/widgets/alert_dialog.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
-import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
 import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 
 class FloatingButtonWidgetLarge extends StatelessWidget {
@@ -21,7 +19,9 @@ class FloatingButtonWidgetLarge extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        if (nameTab == Assistindo.aba) {
+        Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+            arguments: {'nameTab': nameTab, 'typeData': 'Série'});
+        /* if (nameTab == Assistindo.aba) {
           Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
               arguments: {'nameTab': nameTab, 'typeData': 'Série'});
         } else {
@@ -33,7 +33,7 @@ class FloatingButtonWidgetLarge extends StatelessWidget {
               );
             },
           );
-        }
+        } */
       },
       child: const Icon(
         Icons.add,
@@ -61,7 +61,9 @@ class FloatingButtonWidgetSmall extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        if (nameTab == Assistindo.aba) {
+        Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+            arguments: {'nameTab': nameTab, 'typeData': 'Série'});
+        /* if (nameTab == Assistindo.aba) {
           Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
               arguments: {'nameTab': nameTab, 'typeData': 'Série'});
         } else {
@@ -73,7 +75,7 @@ class FloatingButtonWidgetSmall extends StatelessWidget {
               );
             },
           );
-        }
+        } */
       },
       child: const Icon(
         Icons.add,

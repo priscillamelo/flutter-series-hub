@@ -7,6 +7,7 @@ class SerieRepository extends ChangeNotifier {
   CREATE TABLE ${Serie.kSERIETABLE}(
     ${Serie.kIDSERIECOLUMN} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${Serie.kTITLESERIECOLUMN} TEXT,
+    ${Serie.kCURRENTSEASONSERIECOLUMN} INTEGER,
     ${Serie.kDIRECTORSERIECOLUMN} TEXT,
     ${Serie.kGENRESERIECOLUMN} TEXT,
     ${Serie.kCASTSERIECOLUMN} TEXT,
@@ -45,6 +46,8 @@ class SerieRepository extends ChangeNotifier {
 
   Future<void> addSerie(Serie serie) async {
     serieHelper.addSerie(serie);
+
+    notifyListeners();
   }
 
   Future<void> updateSerie(Serie serie) async {

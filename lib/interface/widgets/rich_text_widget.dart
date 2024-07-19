@@ -6,7 +6,7 @@ class RichTextWidget extends StatelessWidget {
   final String propertie;
   final String? propertieValue;
   const RichTextWidget(
-      {super.key, required this.propertie, this.propertieValue = " "});
+      {super.key, required this.propertie, this.propertieValue});
 
   @override
   Widget build(BuildContext context) {
