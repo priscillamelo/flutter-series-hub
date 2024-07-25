@@ -25,7 +25,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         Provider.of<SerieRepository>(context);
 
     return RatingBar.builder(
-      itemSize: 24,
+      itemSize: 32,
       initialRating: widget.data.avaliacao,
       direction: Axis.horizontal,
       allowHalfRating: true,

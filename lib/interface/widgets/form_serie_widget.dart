@@ -172,6 +172,10 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
           ),
           ElevatedButton(
             onPressed: () {
+              if (temporadasController.text.isEmpty) {
+                int.parse(temporadasController.text = "1");
+              }
+
               if (_formKey.currentState!.validate()) {
                 Serie serie = Serie(
                   poster: posterPath,
@@ -179,7 +183,7 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
                   genero: generoController.text,
                   //anoLancamento: int.parse(anoLancamentoController.text),
                   categoriaPertencente: widget.categoriaPertencente,
-                  temporadas: int.parse(temporadasController.text = "1"),
+                  temporadas: int.parse(temporadasController.text),
                 );
                 serieRepository.addSerie(serie);
 

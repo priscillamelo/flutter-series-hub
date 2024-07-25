@@ -30,16 +30,19 @@ class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
     return FutureBuilder(
         future: serieRepository.getAllSeries(),
         builder: (context, snapshot) {
-          if (snapshot.data?.isEmpty ?? true) {
-            return const HomeNoDataWidget(
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            ); /* const HomeNoDataWidget(
               nameTab: Assistir.aba,
-            );
+            ); */
           } else {
             for (int i = 0; i < snapshot.data!.length; i++) {
               if (snapshot.data![i].categoriaPertencente == Assistir.aba) {
                 listSeries.add(snapshot.data![i]);
               }
             }
+
             if (listSeries.isEmpty) {
               return const HomeNoDataWidget(
                 nameTab: Assistir.aba,

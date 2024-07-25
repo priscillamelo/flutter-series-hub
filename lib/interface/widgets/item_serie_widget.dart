@@ -29,36 +29,35 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
         color: ColorsTheme.bgCardDetails,
         elevation: 4,
         margin: const EdgeInsets.all(16),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 6,
-          child: LayoutBuilder(builder: (context, constraints) {
-            final double availableHeight = constraints.maxHeight;
-            final double desiredHeight = availableHeight / 1.5;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          children: [
+            LayoutBuilder(
+              builder: (context, constraints) {
+                debugPrint("largura do card ${constraints.maxWidth}");
+                debugPrint("altura do card ${constraints.maxHeight}");
+                final parentWidth = constraints.maxWidth;
+                final parentHeigth = constraints.maxHeight;
+                return SizedBox(
+                  child: Column(
                     children: [
                       Container(
                         margin: const EdgeInsets.only(right: 8),
-                        width: constraints.maxWidth / 3,
                         alignment: Alignment.center,
                         child: serie.poster != null
                             ? Image.file(
                                 File(serie.poster.toString()),
-                                height: desiredHeight,
                                 semanticLabel: "Poster",
                                 fit: BoxFit.fill,
+                                width: parentWidth / 2,
                                 alignment: Alignment.center,
                               )
                             : Image.asset(
                                 "assets/no_image.png",
-                                height: desiredHeight,
                                 semanticLabel: "Poster",
                                 fit: BoxFit.fill,
+                                width: parentWidth / 2,
                                 alignment: Alignment.center,
                               ),
                       ),
@@ -68,43 +67,86 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      RichTextWidget(
-                        propertie: "Título",
-                        propertieValue: serie.titulo,
-                      ),
-                      RichTextWidget(
-                        propertie: "Gênero",
-                        propertieValue: serie.genero,
-                      ),
-                      RichTextWidget(
-                        propertie: "Temporadas",
-                        propertieValue: serie.temporadas.toString(),
-                      ),
-                      /* RichTextWidget(
-                        propertie: "Atores Principais",
-                        propertieValue: serie.elenco,
-                      ), */
-                    ],
-                  ),
-                  /* Container(
-                    margin: const EdgeInsets.only(left: 8),
-                    width: constraints.maxWidth / 4.5,
-                    height: desiredHeight * 1.3,
-                    color: ColorsTheme.bgTabSelected,
-                    child: RichTextWidget(
-                      propertie: "Sinopse",
-                      propertieValue: serie.sinopse,
+                );
+              },
+            ),
+          ],
+        ), /* SizedBox(
+        height: MediaQuery.of(context).size.height / 6,
+        child: LayoutBuilder(builder: (context, constraints) {
+          final double availableHeight = constraints.maxHeight;
+          final double desiredHeight = availableHeight / 1.5;
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 8),
+                      width: constraints.maxWidth / 3,
+                      alignment: Alignment.center,
+                      child: serie.poster != null
+                          ? Image.file(
+                              File(serie.poster.toString()),
+                              height: desiredHeight,
+                              semanticLabel: "Poster",
+                              fit: BoxFit.fill,
+                              alignment: Alignment.center,
+                            )
+                          : Image.asset(
+                              "assets/no_image.png",
+                              height: desiredHeight,
+                              semanticLabel: "Poster",
+                              fit: BoxFit.fill,
+                              alignment: Alignment.center,
+                            ),
                     ),
-                  ), */
-                ],
-              ),
-            );
-          }),
-        ),
+                    RatingBarWidget(
+                      data: serie,
+                      typeData: "serie",
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    RichTextWidget(
+                      propertie: "Título",
+                      propertieValue: serie.titulo,
+                    ),
+                    RichTextWidget(
+                      propertie: "Gênero",
+                      propertieValue: serie.genero,
+                    ),
+                    RichTextWidget(
+                      propertie: "Temporadas",
+                      propertieValue: serie.temporadas.toString(),
+                    ),
+                    /* RichTextWidget(
+                      propertie: "Atores Principais",
+                      propertieValue: serie.elenco,
+                    ), */
+                  ],
+                ),
+                /* Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  width: constraints.maxWidth / 4.5,
+                  height: desiredHeight * 1.3,
+                  color: ColorsTheme.bgTabSelected,
+                  child: RichTextWidget(
+                    propertie: "Sinopse",
+                    propertieValue: serie.sinopse,
+                  ),
+                ), */
+              ],
+            ),
+          );
+        }),
+      ), */
       ),
       /* TODO: CRIAR UMA PAGINA DE TODAS AS INFORMAÇÕES DA SÉRIE
       onTap: () {
