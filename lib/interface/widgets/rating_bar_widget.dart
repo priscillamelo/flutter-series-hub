@@ -9,8 +9,12 @@ import 'customs/colors.dart';
 class RatingBarWidget extends StatefulWidget {
   final dynamic data;
   final String typeData;
+  final double sizeIcon;
   const RatingBarWidget(
-      {super.key, required this.data, required this.typeData});
+      {super.key,
+      required this.data,
+      required this.typeData,
+      required this.sizeIcon});
 
   @override
   State<RatingBarWidget> createState() => _RatingBarWidgetState();
@@ -25,7 +29,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         Provider.of<SerieRepository>(context);
 
     return RatingBar.builder(
-      itemSize: 32,
+      itemSize: widget.sizeIcon,
       initialRating: widget.data.avaliacao,
       direction: Axis.horizontal,
       allowHalfRating: true,

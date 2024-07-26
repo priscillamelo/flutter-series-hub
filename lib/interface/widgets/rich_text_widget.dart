@@ -11,7 +11,12 @@ class RichTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorsTheme.bgInputDetails,
+      decoration: const BoxDecoration(
+        color: ColorsTheme.bgInputDetails,
+        borderRadius: BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
       padding: const EdgeInsets.all(8),
       width: MediaQuery.of(context).size.width / 3,
       child: RichText(

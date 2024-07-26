@@ -5,9 +5,7 @@ import 'package:flutter_journal_moviesandseries/interface/widgets/customs/alert_
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rating_bar_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rich_text_widget.dart';
-
-// MODEL
-import '../../models/serie.dart';
+import 'package:flutter_journal_moviesandseries/models/serie.dart';
 
 class ItemSerieWidget extends StatefulWidget {
   final Serie serie;
@@ -29,124 +27,78 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
         color: ColorsTheme.bgCardDetails,
         elevation: 4,
         margin: const EdgeInsets.all(16),
-        child: GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          children: [
-            LayoutBuilder(
-              builder: (context, constraints) {
-                debugPrint("largura do card ${constraints.maxWidth}");
-                debugPrint("altura do card ${constraints.maxHeight}");
-                final parentWidth = constraints.maxWidth;
-                final parentHeigth = constraints.maxHeight;
-                return SizedBox(
-                  child: Column(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              var heightParent = constraints.maxHeight;
+              var widthParent = constraints.maxWidth;
+              var widthImage = widthParent * 0.4;
+              var heightImage = heightParent * 0.7;
+              var sizeIcon = heightParent * 0.2;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 8),
-                        alignment: Alignment.center,
-                        child: serie.poster != null
-                            ? Image.file(
-                                File(serie.poster.toString()),
-                                semanticLabel: "Poster",
-                                fit: BoxFit.fill,
-                                width: parentWidth / 2,
-                                alignment: Alignment.center,
-                              )
-                            : Image.asset(
-                                "assets/no_image.png",
-                                semanticLabel: "Poster",
-                                fit: BoxFit.fill,
-                                width: parentWidth / 2,
-                                alignment: Alignment.center,
-                              ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: serie.poster != null
+                              ? Image.file(
+                                  File(serie.poster.toString()),
+                                  semanticLabel: "Poster",
+                                  fit: BoxFit.fill,
+                                  width: widthImage,
+                                  height: heightImage,
+                                  alignment: Alignment.center,
+                                )
+                              : Image.asset(
+                                  "assets/no_image.png",
+                                  semanticLabel: "Poster",
+                                  fit: BoxFit.fill,
+                                  width: widthImage,
+                                  height: heightImage,
+                                  alignment: Alignment.center,
+                                ),
+                        ),
                       ),
                       RatingBarWidget(
                         data: serie,
                         typeData: "serie",
+                        sizeIcon: sizeIcon,
                       ),
                     ],
                   ),
-                );
-              },
-            ),
-          ],
-        ), /* SizedBox(
-        height: MediaQuery.of(context).size.height / 6,
-        child: LayoutBuilder(builder: (context, constraints) {
-          final double availableHeight = constraints.maxHeight;
-          final double desiredHeight = availableHeight / 1.5;
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 8),
-                      width: constraints.maxWidth / 3,
-                      alignment: Alignment.center,
-                      child: serie.poster != null
-                          ? Image.file(
-                              File(serie.poster.toString()),
-                              height: desiredHeight,
-                              semanticLabel: "Poster",
-                              fit: BoxFit.fill,
-                              alignment: Alignment.center,
-                            )
-                          : Image.asset(
-                              "assets/no_image.png",
-                              height: desiredHeight,
-                              semanticLabel: "Poster",
-                              fit: BoxFit.fill,
-                              alignment: Alignment.center,
-                            ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichTextWidget(
+                          propertie: "Título",
+                          propertieValue: serie.titulo,
+                        ),
+                        RichTextWidget(
+                          propertie: "Gênero",
+                          propertieValue: serie.genero,
+                        ),
+                        RichTextWidget(
+                          propertie: "Temporadas",
+                          propertieValue: serie.temporadas.toString(),
+                        ),
+                      ],
                     ),
-                    RatingBarWidget(
-                      data: serie,
-                      typeData: "serie",
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    RichTextWidget(
-                      propertie: "Título",
-                      propertieValue: serie.titulo,
-                    ),
-                    RichTextWidget(
-                      propertie: "Gênero",
-                      propertieValue: serie.genero,
-                    ),
-                    RichTextWidget(
-                      propertie: "Temporadas",
-                      propertieValue: serie.temporadas.toString(),
-                    ),
-                    /* RichTextWidget(
-                      propertie: "Atores Principais",
-                      propertieValue: serie.elenco,
-                    ), */
-                  ],
-                ),
-                /* Container(
-                  margin: const EdgeInsets.only(left: 8),
-                  width: constraints.maxWidth / 4.5,
-                  height: desiredHeight * 1.3,
-                  color: ColorsTheme.bgTabSelected,
-                  child: RichTextWidget(
-                    propertie: "Sinopse",
-                    propertieValue: serie.sinopse,
-                  ),
-                ), */
-              ],
-            ),
-          );
-        }),
-      ), */
+                  )
+                ],
+              );
+            },
+          ),
+        ),
       ),
       /* TODO: CRIAR UMA PAGINA DE TODAS AS INFORMAÇÕES DA SÉRIE
       onTap: () {

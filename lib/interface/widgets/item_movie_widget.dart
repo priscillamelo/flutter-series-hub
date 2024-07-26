@@ -59,6 +59,7 @@ class _ItemMovieWidgetState extends State<ItemMovieWidget> {
                       RatingBarWidget(
                         data: filme,
                         typeData: "filme",
+                        sizeIcon: 32,
                       ),
                     ],
                   ),

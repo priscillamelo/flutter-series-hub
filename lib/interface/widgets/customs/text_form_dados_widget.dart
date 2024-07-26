@@ -14,6 +14,7 @@ class DadosFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: valueInitial,
       controller: controller,
       keyboardType: keyboardType,
       validator: _validatorField,
@@ -31,18 +32,6 @@ class DadosFormFieldWidget extends StatelessWidget {
         return "O campo não pode ser vazio";
       }
     }
-    /* if (keyboardType == TextInputType.number) {
-      if (!label.contains("Temporada") && (value == null || value.isEmpty)) {
-        return "O campo não pode ser vazio";
-      } else if (!label.contains("Temporada") &&
-          int.parse(controller.text) < 1870) {
-        return "Ano inválido!";
-      }
-    } else if (label.contains("Temporada") &&
-        (controller.text.isEmpty || value == null)) {
-      controller.text = "1";
-      return null;
-    } */
     return null;
   }
 }

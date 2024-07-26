@@ -22,9 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.amber,
       appBar: AppBar(
-        backgroundColor: Colors.amber,
         title: Image.asset('assets/logo_app.png'),
         centerTitle: true,
         forceMaterialTransparency: true,
@@ -101,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                               email: _emailController.text,
                               senha: _senhaController.text)
                           .then((String? erro) {
+                        if(!context.mounted) return;
                         if (erro != null) {
                           showSnackBar(context: context, text: erro);
                         } else {
