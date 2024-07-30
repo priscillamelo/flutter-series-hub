@@ -14,7 +14,7 @@ class RichTextWidget extends StatelessWidget {
       decoration: const BoxDecoration(
         color: ColorsTheme.bgInputDetails,
         borderRadius: BorderRadius.all(
-          Radius.circular(50),
+          Radius.circular(20),
         ),
       ),
       padding: const EdgeInsets.all(8),
@@ -22,6 +22,7 @@ class RichTextWidget extends StatelessWidget {
       child: RichText(
         softWrap: true,
         textAlign: TextAlign.start,
+        overflow: TextOverflow.ellipsis,
         text: TextSpan(
           children: [
             TextSpan(
@@ -34,6 +35,7 @@ class RichTextWidget extends StatelessWidget {
               text: propertieValue != null ? '$propertieValue' : " ",
               style: const TextStyle(
                 color: Colors.deepPurple,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],

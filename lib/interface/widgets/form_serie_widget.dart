@@ -126,14 +126,6 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
                     const SizedBox(
                       height: 16,
                     ),
-                  /* DadosFormFieldWidget(
-                    label: 'Ano de Lançamento',
-                    controller: anoLancamentoController,
-                    keyboardType: TextInputType.number,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ), */
                   DadosFormFieldWidget(
                     label: 'Gênero',
                     controller: generoController,
@@ -142,14 +134,6 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
                   const SizedBox(
                     height: 16,
                   ),
-                  /* DadosFormFieldWidget(
-                    label: 'Diretor',
-                    controller: diretorController,
-                    keyboardType: TextInputType.text,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ), */
                   DadosFormFieldWidget(
                     label: 'Temporadas',
                     controller: temporadasController,
@@ -158,14 +142,14 @@ class _FormSerieWidgetState extends State<FormSerieWidget> {
                   const SizedBox(
                     height: 16,
                   ),
-                  /* DadosFormFieldWidget(
+                  DadosFormFieldWidget(
                     label: 'Sinopse',
                     controller: sinopseController,
                     keyboardType: TextInputType.multiline,
                   ),
                   const SizedBox(
                     height: 16,
-                  ), */
+                  ),
                 ],
               ),
             ),

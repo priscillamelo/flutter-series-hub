@@ -4,6 +4,7 @@ class DadosFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String label;
+
   const DadosFormFieldWidget({
     super.key,
     required this.controller,
@@ -14,7 +15,6 @@ class DadosFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: valueInitial,
       controller: controller,
       keyboardType: keyboardType,
       validator: _validatorField,

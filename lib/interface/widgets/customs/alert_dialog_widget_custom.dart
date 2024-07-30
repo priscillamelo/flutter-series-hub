@@ -40,15 +40,9 @@ class AlertDialogWidgetCustom extends StatelessWidget {
               onPressed: () {
                 Navigator.popAndPushNamed(
                     context, PagesRoutes.kUPDATE_MOVIE_SERIE,
-                    arguments: data);
+                    arguments: data.id);
               },
             ),
-            /* _buildActionRow(
-              icon: Icons.edit_rounded,
-              text: "Editar",
-              onPressed: () =>
-                  Navigator.popAndPushNamed(context, '/update-movie-serie'),
-            ), */
             const Divider(
               height: 8,
             ),

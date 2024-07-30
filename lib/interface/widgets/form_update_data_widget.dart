@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
-import 'package:flutter_journal_moviesandseries/interface/widgets/customs/text_form_dados_widget.dart';
 import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
 import 'package:flutter_journal_moviesandseries/models/serie.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
@@ -26,47 +25,44 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
   //ValuesRegister? _selectedOption;
   // para armazenar o valor do RadioButton selecionado
   String valueOption = "Filme";
-  int idFilme = 0;
 
   final _formKey = GlobalKey<FormState>();
-  final tituloController = TextEditingController();
+  TextEditingController tituloController = TextEditingController();
   final generoController = TextEditingController();
   final temporadasController = TextEditingController();
   final temporadaAtualController = TextEditingController();
-  //final diretorController = TextEditingController();
-  //final anoLancamentoController = TextEditingController();
-  //final sinopseController = TextEditingController();
-
-  //final elencoController = TextEditingController();
+  final sinopseController = TextEditingController();
   String? posterPath;
 
-  selectedImage() async {
+  Future<String?> selectedImage(String? path) async {
     final ImagePicker imagePicker = ImagePicker();
 
     try {
       XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
       if (file != null) {
         setState(() {
-          posterPath = file.path;
+          path = file.path;
         });
       }
     } catch (e) {
       debugPrint(e.toString());
     }
+
+    return path;
   }
 
   @override
   Widget build(BuildContext context) {
-    //idFilme = int.parse(widget.idFilme);
-    //String tabName = widget.categoriaPertencente;
-
-    //final filmeRepository = Provider.of<FilmeRepository>(context);
     final serieRepository = Provider.of<SerieRepository>(context);
+
     return FutureBuilder(
         future: serieRepository.getSerieById(int.parse(widget.id)),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Serie serie = snapshot.data;
+            if (serie.poster != null) posterPath = serie.poster;
+            tituloController.text = serie.titulo;
+
             return Scaffold(
               appBar: AppBar(
                 title: const Text(
@@ -114,7 +110,15 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                                         color: ColorsTheme.bgInput,
                                       ),
                                       TextButton(
-                                        onPressed: () => selectedImage(),
+                                        onPressed: () async {
+                                          String? path =
+                                              await selectedImage(posterPath);
+                                          if (path != null) {
+                                            setState(() {
+                                              posterPath = path;
+                                            });
+                                          }
+                                        },
                                         child: const Text(
                                           "Carregar novo poster",
                                           style: TextStyle(
@@ -128,39 +132,68 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                             const SizedBox(
                               height: 32,
                             ),
-                            DadosFormFieldWidget(
-                              label: 'Título',
-                              keyboardType: TextInputType.text,
-                              controller: tituloController,
+                            TextFormField(
+                              initialValue: serie.titulo,
+                              onSaved: (newValue) {
+                                tituloController.text = newValue!;
+                              },
+                              decoration: const InputDecoration(
+                                label: Text("Título"),
+                              ),
                             ),
                             const SizedBox(
                               height: 16,
                             ),
                             if (serie.categoriaPertencente == Assistindo.aba)
-                              DadosFormFieldWidget(
-                                label: 'Temporada Atual',
-                                controller: temporadaAtualController,
+                              TextFormField(
+                                initialValue: serie.temporadaAtual.toString(),
                                 keyboardType: TextInputType.number,
+                                onSaved: (newValue) {
+                                  temporadaAtualController.text = newValue!;
+                                },
+                                decoration: const InputDecoration(
+                                  label: Text("Temporada Atual"),
+                                ),
                               ),
                             if (serie.categoriaPertencente == Assistindo.aba)
                               const SizedBox(
                                 height: 16,
                               ),
-                            DadosFormFieldWidget(
-                              label: 'Gênero',
-                              controller: generoController,
+                            TextFormField(
+                              initialValue: serie.genero,
                               keyboardType: TextInputType.text,
+                              onSaved: (newValue) {
+                                generoController.text = newValue!;
+                              },
+                              decoration: const InputDecoration(
+                                label: Text("Gênero"),
+                              ),
                             ),
                             const SizedBox(
                               height: 16,
                             ),
-                            DadosFormFieldWidget(
-                              label: 'Temporadas',
-                              controller: temporadasController,
+                            TextFormField(
+                              initialValue: serie.temporadas.toString(),
                               keyboardType: TextInputType.number,
+                              onSaved: (newValue) {
+                                temporadasController.text = newValue!;
+                              },
+                              decoration: const InputDecoration(
+                                label: Text("Temporadas"),
+                              ),
                             ),
                             const SizedBox(
                               height: 16,
+                            ),
+                            TextFormField(
+                              initialValue: serie.sinopse,
+                              keyboardType: TextInputType.multiline,
+                              onSaved: (newValue) {
+                                sinopseController.text = newValue!;
+                              },
+                              decoration: const InputDecoration(
+                                label: Text("Sinopse"),
+                              ),
                             ),
                           ],
                         ),
@@ -169,11 +202,13 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
                           serie.titulo = tituloController.text;
                           serie.poster = posterPath;
                           serie.genero = generoController.text;
                           serie.temporadas =
                               int.parse(temporadasController.text);
+                          serie.sinopse = sinopseController.text;
 
                           serieRepository.updateSerie(serie);
 
@@ -197,13 +232,18 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 32,
-                    ),
                   ],
                 ),
               ),
-              /* if (tabName.toLowerCase() != TabTypes.assistindo.name)
+            );
+          } else {
+            return const Text("Erro ao editar");
+          }
+        });
+  }
+}
+
+/* if (tabName.toLowerCase() != TabTypes.assistindo.name)
               OptionsRegister(
                 onOptionSelected: (value) {
                   setState(() {
@@ -228,17 +268,6 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                           anoLancamentoController.text =
                               filme.anoLancamento.toString();
                           sinopseController.text = (filme.sinopse ?? ""); */
-            );
-          } else {
-            return const ScaffoldMessenger(
-              child: SnackBar(
-                content: Text("Erro ao editar"),
-              ),
-            );
-          }
-        });
-  }
-}
 /* 
 
 
