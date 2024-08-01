@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/assistindo_tab_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/assistir_tab_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/concluido_tab_widget.dart';
+import 'package:flutter_journal_moviesandseries/interface/widgets/customs/search_delegate_custom.dart';
+import 'package:flutter_journal_moviesandseries/models/serie.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
+import 'package:provider/provider.dart';
 
 // WIDGET
 import '../widgets/customs/colors.dart';
@@ -16,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late TabController _tabController;
-  final serieRepository = SerieRepository();
+  late List<Serie> listSeries;
 
   @override
   void initState() {
@@ -26,20 +29,41 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final serieRepository = Provider.of<SerieRepository>(context);
+    final Future<List<Serie>> listDatas = serieRepository.getAllSeries();
+
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          'assets/logo_app.png',
-          fit: BoxFit.fill,
-          height: 80,
-          semanticLabel: "Logo do App - My Journal Digital",
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.account_circle),
+              iconSize: 50,
+            ),
+            Image.asset(
+              'assets/logo_app.png',
+              fit: BoxFit.fill,
+              height: 80,
+              semanticLabel: "Logo do App - My Journal Digital",
+            ),
+            IconButton(
+              onPressed: () async {
+                listSeries = await listDatas;
+
+                if (!context.mounted) return;
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(listSeries),
+                );
+              },
+              icon: const Icon(Icons.search),
+              iconSize: 32,
+            ),
+          ],
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.account_circle),
-          iconSize: 50,
-        ),
-        leadingWidth: 100,
         toolbarHeight: 70,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(

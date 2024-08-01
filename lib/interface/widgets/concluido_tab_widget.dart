@@ -31,9 +31,7 @@ class _ConcluidoTabWidgetState extends State<ConcluidoTabWidget> {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
-            ); /* const HomeNoDataWidget(
-              nameTab: Assistidos.aba,
-            ); */
+            );
           } else {
             for (int i = 0; i < snapshot.data!.length; i++) {
               if (snapshot.data![i].categoriaPertencente == Assistidos.aba) {

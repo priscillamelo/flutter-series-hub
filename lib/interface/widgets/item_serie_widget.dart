@@ -21,21 +21,23 @@ class ItemSerieWidget extends StatefulWidget {
 class _ItemSerieWidgetState extends State<ItemSerieWidget> {
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width * 0.8;
+    double heightScreen = MediaQuery.of(context).size.height * 0.2;
     final Serie serie = widget.serie;
     return GestureDetector(
       child: Card(
         color: ColorsTheme.bgCardDetails,
         elevation: 4,
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(8),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width * 0.8,
+          width: widthScreen,
+          height: heightScreen,
           child: LayoutBuilder(builder: (context, constraints) {
-            var heightParent = constraints.maxHeight;
-            var widthParent = constraints.maxWidth;
-            var widthImage = widthParent * 0.3;
-            var heightImage = heightParent * 0.7;
-            var sizeIcon = heightParent * 0.12;
+            double heightParent = constraints.maxHeight;
+            double widthParent = constraints.maxWidth;
+            double widthImage = widthParent * 0.3;
+            double heightImage = heightParent * 0.7;
+            double sizeIcon = heightParent * 0.12;
             return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -43,7 +45,7 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                   Expanded(
                     flex: 3,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.only(top: 10, bottom: 4),
                       child: serie.poster != null
                           ? Image.file(
                               File(serie.poster.toString()),
@@ -63,45 +65,45 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                             ),
                     ),
                   ),
-                  RatingBarWidget(
-                    data: serie,
-                    typeData: "serie",
-                    sizeIcon: sizeIcon,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8, left: 4),
+                    child: RatingBarWidget(
+                      data: serie,
+                      typeData: "serie",
+                      sizeIcon: sizeIcon,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichTextWidget(
+                    propertie: "Título",
+                    propertieValue: serie.titulo,
+                  ),
+                  RichTextWidget(
+                    propertie: "Gênero",
+                    propertieValue: serie.genero,
+                  ),
+                  RichTextWidget(
+                    propertie: "Temporadas",
+                    propertieValue: serie.temporadas.toString(),
                   ),
                 ],
               ),
               Container(
-                padding: const EdgeInsets.only(left: 8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichTextWidget(
-                      propertie: "Título",
-                      propertieValue: serie.titulo,
-                    ),
-                    RichTextWidget(
-                      propertie: "Gênero",
-                      propertieValue: serie.genero,
-                    ),
-                    RichTextWidget(
-                      propertie: "Temporadas",
-                      propertieValue: serie.temporadas.toString(),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
+                margin: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.all(8),
+                height: heightParent - 20,
+                width: widthParent / 4.5,
                 decoration: const BoxDecoration(
                   color: ColorsTheme.bgInputDetails,
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
                 ),
-                margin: const EdgeInsets.only(left: 8),
-                padding: const EdgeInsets.all(8),
-                height: heightParent - 20,
-                width: widthParent / 4.5,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

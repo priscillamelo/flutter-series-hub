@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_journal_moviesandseries/interface/pages/info_data_page.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/theme_data.dart';
 import 'package:flutter_journal_moviesandseries/services/repository/serie_repository.dart';
 // PROVIDER
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         PagesRoutes.kHOME: (context) => const HomePage(),
         PagesRoutes.kADD_MOVIE_SERIE: (context) => const AddDataPage(),
         PagesRoutes.kUPDATE_MOVIE_SERIE: (context) => const UpdateDataPage(),
+        PagesRoutes.kINFO_DATA_PAGE: (context) => const InfoDataPage(),
       },
       home: const DefaultTabController(
         length: 3,

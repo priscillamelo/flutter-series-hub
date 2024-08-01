@@ -9,8 +9,6 @@ import 'package:provider/provider.dart';
 import '../../models/abas/assistir.dart';
 // ROUTES
 import '../../routes/pages_routes.dart';
-// WIDGET
-import 'customs/colors.dart';
 import 'floating_button_widget.dart';
 import 'home_no_data_widget.dart';
 
@@ -22,6 +20,8 @@ class AssistirTabWidget extends StatefulWidget {
 }
 
 class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
+  final TextEditingController controllerSearch = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final serieRepository = Provider.of<SerieRepository>(context);
@@ -49,56 +49,32 @@ class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
               );
             } else {
               return Scaffold(
-                body: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 64, vertical: 16),
-                      child: SearchBar(
-                        leading: const Icon(Icons.search),
-                        hintText: "Pesquisar série",
-                        trailing: [
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {});
-                            },
-                            child: const Text("Buscar"),
-                          ),
-                        ],
-                        backgroundColor: WidgetStateProperty.all(
-                          Color(ColorsTheme.bgInput.value),
-                        ),
-                        shape: WidgetStateProperty.all(
-                          const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(50),
-                            ),
-                          ),
-                        ),
-                        padding: WidgetStateProperty.all(
-                          const EdgeInsets.all(8),
-                        ),
-                        textInputAction: TextInputAction.search,
-                        keyboardType: TextInputType.text,
+                body: Padding(
+                  padding: const EdgeInsets.only(top: 16, right: 8, left: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: listSeries.length,
+                            itemBuilder: (context, index) {
+                              return ItemSerieWidget(
+                                serie: listSeries[index],
+                                nameTab: Assistir.aba,
+                              );
+                            }),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: listSeries.length,
-                          itemBuilder: (context, index) {
-                            return ItemSerieWidget(
-                              serie: listSeries[index],
-                              nameTab: Assistir.aba,
-                            );
-                          }),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                floatingActionButton: const FloatingButtonWidgetSmall(
-                  heroTagName: 'route-add-2',
-                  routeName: PagesRoutes.kADD_MOVIE_SERIE,
-                  nameTab: Assistir.aba,
+                floatingActionButton: const Padding(
+                  padding: EdgeInsets.only(right: 8, bottom: 8),
+                  child: FloatingButtonWidgetSmall(
+                    heroTagName: 'route-add-2',
+                    routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                    nameTab: Assistir.aba,
+                  ),
                 ),
               );
             }
