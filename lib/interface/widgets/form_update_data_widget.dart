@@ -208,6 +208,8 @@ class _FormUpdateDataWidget extends State<FormUpdateDataWidget> {
                           serie.genero = generoController.text;
                           serie.temporadas =
                               int.parse(temporadasController.text);
+                          serie.temporadaAtual =
+                              int.parse(temporadaAtualController.text);
                           serie.sinopse = sinopseController.text;
 
                           serieRepository.updateSerie(serie);

@@ -5,7 +5,9 @@ import 'package:flutter_journal_moviesandseries/interface/widgets/customs/alert_
 import 'package:flutter_journal_moviesandseries/interface/widgets/customs/colors.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rating_bar_widget.dart';
 import 'package:flutter_journal_moviesandseries/interface/widgets/rich_text_widget.dart';
+import 'package:flutter_journal_moviesandseries/models/abas/assistindo.dart';
 import 'package:flutter_journal_moviesandseries/models/serie.dart';
+import 'package:flutter_journal_moviesandseries/routes/pages_routes.dart';
 
 class ItemSerieWidget extends StatefulWidget {
   final Serie serie;
@@ -87,6 +89,11 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                     propertie: "Gênero",
                     propertieValue: serie.genero,
                   ),
+                  if (widget.nameTab == Assistindo.aba)
+                    RichTextWidget(
+                      propertie: "Temporada Atual",
+                      propertieValue: serie.temporadaAtual.toString(),
+                    ),
                   RichTextWidget(
                     propertie: "Temporadas",
                     propertieValue: serie.temporadas.toString(),
@@ -97,7 +104,7 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                 margin: const EdgeInsets.only(left: 8),
                 padding: const EdgeInsets.all(8),
                 height: heightParent - 20,
-                width: widthParent / 4.5,
+                width: widthParent / 4.3,
                 decoration: const BoxDecoration(
                   color: ColorsTheme.bgInputDetails,
                   borderRadius: BorderRadius.all(
@@ -131,11 +138,12 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
           }),
         ),
       ),
-      /* TODO: CRIAR UMA PAGINA DE TODAS AS INFORMAÇÕES DA SÉRIE
       onTap: () {
-        Navigator.pushNamed(context, PagesRoutes.kUPDATE_MOVIE_SERIE,
-            arguments: widget.serie.id.toString());
-      }, */
+        Navigator.pushNamed(
+          context,
+          PagesRoutes.kINFO_DATA_PAGE,
+        );
+      },
       onLongPress: () {
         showDialog(
             context: context,
