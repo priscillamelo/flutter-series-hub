@@ -1,7 +1,8 @@
+import 'package:flutter_journal_moviesandseries/models/serie.dart';
 
 class Assistir {
   static const String aba = "Assistir";
-  late List<dynamic> listDatas = [];
+  late List<Serie> listDatas = [];
 
   static final Assistir _assistirSingleton = Assistir._internal();
 
@@ -10,13 +11,4 @@ class Assistir {
   }
 
   Assistir._internal();
-  
-
- /*  List<Filme> get getListMovies {
-    return listMovies;
-  }
-
-  set setListMovies(List<Filme> listMovies) {
-    this.listMovies = listMovies;
-  } */
 }

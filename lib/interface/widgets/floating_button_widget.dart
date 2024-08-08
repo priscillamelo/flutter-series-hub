@@ -19,7 +19,7 @@ class FloatingButtonWidgetLarge extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+        Navigator.pushNamed(context, PagesRoutes.kADD_SERIE,
             arguments: {'nameTab': nameTab, 'typeData': 'Série'});
         /* if (nameTab == Assistindo.aba) {
           Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
@@ -61,7 +61,7 @@ class FloatingButtonWidgetSmall extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       heroTag: heroTagName,
       onPressed: () {
-        Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,
+        Navigator.pushNamed(context, PagesRoutes.kADD_SERIE,
             arguments: {'nameTab': nameTab, 'typeData': 'Série'});
         /* if (nameTab == Assistindo.aba) {
           Navigator.pushNamed(context, PagesRoutes.kADD_MOVIE_SERIE,

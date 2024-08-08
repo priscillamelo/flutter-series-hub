@@ -7,9 +7,7 @@ class AddDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
-
     final nameTab = arguments['nameTab'];
-    //final typeData = arguments['typeData'];
 
     return Scaffold(
       body: FormSerieWidget(categoriaPertencente: nameTab),

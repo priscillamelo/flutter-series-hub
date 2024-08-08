@@ -17,7 +17,7 @@ class HomeNoDataWidget extends StatelessWidget {
         children: [
           FloatingButtonWidgetLarge(
             heroTagName: '',
-            routeName: PagesRoutes.kADD_MOVIE_SERIE,
+            routeName: PagesRoutes.kADD_SERIE,
             nameTab: nameTab,
           ),
           const SizedBox(

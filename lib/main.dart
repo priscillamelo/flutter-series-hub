@@ -17,8 +17,6 @@ import 'interface/pages/update_data_page.dart';
 // ROUTES
 import 'routes/pages_routes.dart';
 import 'routes/user_route.dart';
-// SERVICE
-import 'services/repository/filme_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +26,7 @@ void main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-        create: (_) => FilmeRepository(),
-      ),
+      
       ChangeNotifierProvider(
         create: (_) => SerieRepository(),
       ),
@@ -52,8 +48,8 @@ class MyApp extends StatelessWidget {
         PagesRoutes.kLOGIN_PAGE: (context) => const LoginPage(),
         PagesRoutes.kCREATE_ACCOUNT: (context) => const CriarContaPage(),
         PagesRoutes.kHOME: (context) => const HomePage(),
-        PagesRoutes.kADD_MOVIE_SERIE: (context) => const AddDataPage(),
-        PagesRoutes.kUPDATE_MOVIE_SERIE: (context) => const UpdateDataPage(),
+        PagesRoutes.kADD_SERIE: (context) => const AddDataPage(),
+        PagesRoutes.kUPDATE_SERIE: (context) => const UpdateDataPage(),
         PagesRoutes.kINFO_DATA_PAGE: (context) => const InfoDataPage(),
       },
       home: const DefaultTabController(

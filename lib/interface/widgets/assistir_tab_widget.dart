@@ -33,9 +33,7 @@ class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
           if (!snapshot.hasData) {
             return const Center(
               child: CircularProgressIndicator(),
-            ); /* const HomeNoDataWidget(
-              nameTab: Assistir.aba,
-            ); */
+            ); 
           } else {
             for (int i = 0; i < snapshot.data!.length; i++) {
               if (snapshot.data![i].categoriaPertencente == Assistir.aba) {
@@ -72,7 +70,7 @@ class _AssistirTabWidgetMainState extends State<AssistirTabWidget> {
                   padding: EdgeInsets.only(right: 8, bottom: 8),
                   child: FloatingButtonWidgetSmall(
                     heroTagName: 'route-add-2',
-                    routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                    routeName: PagesRoutes.kADD_SERIE,
                     nameTab: Assistir.aba,
                   ),
                 ),

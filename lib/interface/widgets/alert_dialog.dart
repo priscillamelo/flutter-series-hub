@@ -49,7 +49,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                   onPressed: () {
                     //debugPrint(widget.nameTab);
                     Navigator.popAndPushNamed(
-                        context, PagesRoutes.kADD_MOVIE_SERIE, arguments: {
+                        context, PagesRoutes.kADD_SERIE, arguments: {
                       'nameTab': widget.nameTab,
                       'typeData': valueOption
                     });

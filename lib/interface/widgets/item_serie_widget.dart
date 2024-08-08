@@ -71,7 +71,6 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
                     padding: const EdgeInsets.only(bottom: 8, left: 4),
                     child: RatingBarWidget(
                       data: serie,
-                      typeData: "serie",
                       sizeIcon: sizeIcon,
                     ),
                   ),
@@ -150,7 +149,6 @@ class _ItemSerieWidgetState extends State<ItemSerieWidget> {
             builder: (context) {
               return AlertDialogWidgetCustom(
                 data: serie,
-                typeData: "serie",
               );
             });
       },

@@ -65,7 +65,7 @@ class _AssistindoTabWidgetState extends State<AssistindoTabWidget> {
               ),
               floatingActionButton: const FloatingButtonWidgetSmall(
                 heroTagName: 'route-add-2',
-                routeName: PagesRoutes.kADD_MOVIE_SERIE,
+                routeName: PagesRoutes.kADD_SERIE,
                 nameTab: Assistindo.aba,
               ),
             );

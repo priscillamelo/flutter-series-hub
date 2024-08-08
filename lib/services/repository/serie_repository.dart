@@ -3,7 +3,7 @@ import 'package:flutter_journal_moviesandseries/database/serie_helper.dart';
 import 'package:flutter_journal_moviesandseries/models/serie.dart';
 
 class SerieRepository extends ChangeNotifier {
-  String get sqlTableMovie => '''
+  String get sqlTableSerie => '''
   CREATE TABLE ${Serie.kSERIETABLE}(
     ${Serie.kIDSERIECOLUMN} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${Serie.kTITLESERIECOLUMN} TEXT,

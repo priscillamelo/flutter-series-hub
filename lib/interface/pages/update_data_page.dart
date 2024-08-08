@@ -7,11 +7,9 @@ class UpdateDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Object tabCategory = ModalRoute.of(context)!.settings.arguments.toString();
     Object id = ModalRoute.of(context)!.settings.arguments.toString();
     return Scaffold(
       body: FormUpdateDataWidget(
-        //categoriaPertencente: tabCategory.toString(),
         id: id.toString(),
       ),
     );
