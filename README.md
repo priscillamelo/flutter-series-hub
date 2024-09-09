@@ -1,23 +1,15 @@
-![SeriesHub](./assets/logo-sh.png)
+<img src="./assets/logo-sh.png" alt="Logo do aplicativo - SerieHub" height="300">
 
-<nav>
-  <ul style="list-style: none;
-  justify-content: center; display: flex">
-    <li style= "margin: 0 10px"><a href="#">Sobre o projeto</a></li>
-    <li style= "margin: 0 10px"><a href="#">Funcionalidades</a></li>
-    <li style= "margin: 0 10px"><a href="#">Ferramentas</a></li>
-    <li style= "margin: 0 10px"><a href="#-layout">Layout</a></li>
-  </ul>
-</nav>
+___
 
-> <i><strong>SeriesHub</strong></i> é um aplicativo mobile que foi desenvolvido durante a disciplina <i>Projetos Aplicados I</i> do curso de <i>Análise e Desenvolvimento de Sistemas</i>. 
-</br>Tem como público-alvo usuários que desejam registrar séries nas quais estão assistindo, querem assistir e/ou já assistiram.
+> <em>**SeriesHub**</em> é um aplicativo mobile que foi desenvolvido durante a disciplina <em>Projetos Aplicados I</em> do curso de **<em>Análise e Desenvolvimento de Sistemas</em>**.
+> </br>Tem como público-alvo usuários que desejam registrar séries nas quais estão assistindo, querem assistir e/ou já assistiram.
 
-## Principais Funções
-* Login/Cadastrar
-* CRUD de séries (Criar, Listar, Editar e Deletar)
-* Avaliar séries existentes
-* Pesquisar uma série específica
+## 🎯 Principais Funções
+* Login/Cadastro de Usuário
+* CRUD de Séries (Criar, Listar, Editar e Deletar)
+* Avaliar Séries existentes
+* Pesquisar uma Série específica
 
 ## ⚒ Ferramentas Utilizadas
 ### Tecnologias
@@ -33,7 +25,7 @@
 + Flutter Rating Bar: 4.0.1
 + Firebase Authenticator: 4.19.1
 
-## Layout
+## 📱 Layout
 ### Login e Cadastro de Usuário
 
 ### Tela Inicial Sem Séries
