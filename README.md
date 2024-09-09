@@ -1,8 +1,19 @@
-# flutter_journal_moviesandseries
+# SeriesHub
 
-A new Flutter project.
+SeriesHub é um aplicativo mobile para usuários poderem utilizar como uma forma de registrar séries nas quais estão assistindo, querem assistir e/ou já assistiram.
 
-## Getting Started
+## Tecnologias Utilizadas
+
+- Flutter
+- SQLite
+- Firebase
+
+### Plugins
++ SQFlite
++ Provider
++ ImagePicker
++ Firebase
+  + Authenticator   
 
 This project is a starting point for a Flutter application.
 
