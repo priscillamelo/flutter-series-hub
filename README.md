@@ -25,7 +25,7 @@ ___
 + Flutter Rating Bar: 4.0.1
 + Firebase Authenticator: 4.19.1
 
-## 📱 Layout
+<!-- ## 📱 Layout
 ### Login e Cadastro de Usuário
 
 ### Tela Inicial Sem Séries
@@ -38,4 +38,4 @@ ___
 
 ### Pesquisa de uma Série
 
-### Deletação de Série
+### Deletação de Série -->
